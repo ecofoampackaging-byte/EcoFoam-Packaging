@@ -63,7 +63,7 @@ export default function ProductCollection({
                     className="px-4 py-2 bg-white text-[#121212] text-xs font-medium uppercase tracking-wider rounded-sm shadow-md hover:bg-neutral-100 transition-all flex items-center gap-1.5"
                   >
                     <Eye className="w-3.5 h-3.5" />
-                    View Specs
+                    View Details
                   </button>
                   <button
                     onClick={() => onQuickQuoteProduct(product)}
@@ -89,7 +89,7 @@ export default function ProductCollection({
                     className="text-[#121212] underline underline-offset-4 hover:text-[#C5A059] transition-colors flex items-center gap-1"
                   >
                     <Info className="w-3.5 h-3.5 text-[#C5A059]" />
-                    Technical Spec Sheet
+                    View Details
                   </button>
                 </div>
               </div>

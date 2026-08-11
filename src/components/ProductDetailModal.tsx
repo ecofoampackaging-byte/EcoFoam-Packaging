@@ -65,24 +65,18 @@ export default function ProductDetailModal({
               {product.description}
             </p>
 
-            {/* Technical Specs Table */}
+            {/* Product Details Overview */}
             <div className="border-t border-b border-neutral-100 py-3 space-y-2 text-xs font-sans">
               <h4 className="font-bold text-[10px] tracking-wider text-neutral-800 uppercase">
-                Technical Specifications
+                Product Details
               </h4>
 
               <div className="grid grid-cols-2 gap-y-1.5 text-neutral-600">
                 <span className="font-medium text-neutral-400">Capacity:</span>
                 <span className="font-semibold text-neutral-900">{product.specs.capacity}</span>
 
-                <span className="font-medium text-neutral-400">Neck Finish:</span>
-                <span className="font-semibold text-neutral-900">{product.specs.neckFinish}</span>
-
                 <span className="font-medium text-neutral-400">Material Grade:</span>
                 <span className="font-semibold text-neutral-900">{product.specs.material}</span>
-
-                <span className="font-medium text-neutral-400">UV Protection:</span>
-                <span className="font-semibold text-neutral-900">{product.specs.uvProtection}</span>
 
                 <span className="font-medium text-neutral-400">Min. Order (MOQ):</span>
                 <span className="font-semibold text-neutral-900">{product.specs.moq}</span>

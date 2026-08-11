@@ -230,7 +230,7 @@ export default function ProductsPage() {
                           onClick={() => setDetailProduct(convertToProductItem(item))}
                           className="text-[11px] text-neutral-400 hover:text-neutral-700"
                         >
-                          Specs
+                          Details
                         </button>
                       </div>
                     </div>
