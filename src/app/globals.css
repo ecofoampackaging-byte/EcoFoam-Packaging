@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #fbfbf9;
+    --foreground: #121212;
+    --sand-100: #f5f3ef;
+    --sand-200: #ebe7df;
+    --sand-300: #dcd6c9;
+    --gold-accent: #c5a059;
+    --gold-dark: #a8813a;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, .font-serif-luxury {
+    font-family: var(--font-serif), Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #c5a059;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a8813a;
+}
+
+/* Glassmorphism & UI Accents */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #d4af37 0%, #a8813a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
