@@ -10,8 +10,8 @@ import SampleModal from "@/components/SampleModal";
 import ProductDetailModal from "@/components/ProductDetailModal";
 import PageTransition from "@/components/PageTransition";
 import { ProductItem } from "@/types";
-import { companyPillars, companyStats, globalHubs } from "@/data/company";
-import { ShieldCheck, Recycle, PenTool, ArrowRight } from "lucide-react";
+import { companyPillars, companyStats, globalHubs, companyContact } from "@/data/company";
+import { ShieldCheck, Recycle, PenTool, ArrowRight, MapPin, ExternalLink } from "lucide-react";
 
 export default function AboutPage() {
   const [quoteOpen, setQuoteOpen] = useState(false);
@@ -239,34 +239,51 @@ export default function AboutPage() {
           </section>
 
           {/* Global Hubs */}
-          <section className="py-20 max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
-            <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
+          <section className="py-20 max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 flex flex-col items-center">
+            <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
               <span className="text-[10px] tracking-[0.25em] text-[#C5A059] uppercase font-bold">
-                GLOBAL FOOTPRINT
+                HEADQUARTERS & LOGISTICS
               </span>
               <h2 className="font-serif text-3xl text-[#121212]">
-                Innovation Facilities & Hubs
+                Innovation Facility & Operations Hub
               </h2>
             </div>
 
-            <div className="max-w-xl mx-auto">
+            <div className="w-full max-w-xl mx-auto flex justify-center">
               {globalHubs.map((hub, idx) => (
                 <div
                   key={idx}
-                  className="bg-white p-8 rounded-sm border border-neutral-200 text-center space-y-3 shadow-xs hover:shadow-md transition-all"
+                  className="w-full bg-white p-8 sm:p-10 rounded-sm border border-neutral-200 text-center space-y-4 shadow-sm hover:shadow-md transition-all"
                 >
-                  <div className="w-10 h-10 bg-neutral-100 rounded-full flex items-center justify-center mx-auto text-[#121212] font-bold font-serif text-sm">
-                    0{idx + 1}
+                  <div className="w-12 h-12 bg-[#121212] text-white rounded-full flex items-center justify-center mx-auto font-bold font-serif text-base shadow-xs">
+                    <MapPin className="w-5 h-5 text-[#C5A059]" />
                   </div>
-                  <h3 className="font-serif font-semibold text-lg text-[#121212]">
-                    {hub.name}
-                  </h3>
-                  <p className="text-xs text-neutral-500 font-sans">
-                    {hub.role}
-                  </p>
-                  <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-[#967C2F] pt-2">
-                    {hub.location}
-                  </span>
+                  <div>
+                    <h3 className="font-serif font-semibold text-xl text-[#121212]">
+                      {hub.name}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-neutral-600 font-sans mt-1">
+                      {hub.role}
+                    </p>
+                  </div>
+                  
+                  <div className="pt-2 flex flex-wrap items-center justify-center gap-2">
+                    <span className="px-3.5 py-1 bg-[#FAF4EA] text-[#967C2F] text-[11px] font-bold uppercase tracking-wider rounded-full border border-[#DECDB8]">
+                      {hub.location}
+                    </span>
+                  </div>
+
+                  <div className="pt-4 border-t border-neutral-100 flex items-center justify-center">
+                    <a
+                      href={companyContact.googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-xs font-semibold text-[#121212] hover:text-[#C5A059] transition-colors"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5 mr-1.5 text-[#C5A059]" />
+                      View Facility on Google Maps
+                    </a>
+                  </div>
                 </div>
               ))}
             </div>
