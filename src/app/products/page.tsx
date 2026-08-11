@@ -46,6 +46,14 @@ export default function ProductsPage() {
     });
   }, [selectedMaterials, selectedFinishes, selectedColors]);
 
+  const ITEMS_PER_PAGE = 6;
+  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / ITEMS_PER_PAGE));
+
+  const paginatedProducts = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredProducts.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredProducts, currentPage]);
+
   const handleInquire = (title: string) => {
     setSelectedProductTitle(title);
     setQuoteOpen(true);
@@ -166,7 +174,7 @@ export default function ProductsPage() {
               {/* Right Side Grid */}
               <div className="lg:col-span-9 space-y-6">
                 <div className="flex items-center justify-between text-xs text-neutral-600 pb-4 border-b border-neutral-200">
-                  <span>Showing {filteredProducts.length} results</span>
+                  <span>Showing {paginatedProducts.length} of {filteredProducts.length} products</span>
 
                   <div className="flex items-center space-x-2">
                     <span className="uppercase text-[11px] tracking-wider font-semibold text-neutral-800">
@@ -185,7 +193,7 @@ export default function ProductsPage() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-2">
-                  {filteredProducts.map((item) => (
+                  {paginatedProducts.map((item) => (
                     <div
                       key={item.id}
                       className="group bg-white flex flex-col justify-between p-4 border border-neutral-200/70 hover:shadow-md transition-all duration-300 rounded-sm"
@@ -255,48 +263,47 @@ export default function ProductsPage() {
                   </div>
                 )}
 
-                <div className="flex items-center justify-center space-x-2 pt-10">
-                  <button
-                    disabled={currentPage === 1}
-                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                    className="w-8 h-8 text-xs text-neutral-400 hover:text-neutral-900 border border-neutral-200 rounded-sm flex items-center justify-center disabled:opacity-40"
-                  >
-                    ‹
-                  </button>
-                  <button
-                    onClick={() => setCurrentPage(1)}
-                    className={`w-8 h-8 text-xs font-bold rounded-sm flex items-center justify-center ${currentPage === 1
-                      ? "bg-[#121212] text-white"
-                      : "border border-neutral-200 text-neutral-700 hover:bg-neutral-100"
-                      }`}
-                  >
-                    1
-                  </button>
-                  <button
-                    onClick={() => setCurrentPage(2)}
-                    className={`w-8 h-8 text-xs font-bold rounded-sm flex items-center justify-center ${currentPage === 2
-                      ? "bg-[#121212] text-white"
-                      : "border border-neutral-200 text-neutral-700 hover:bg-neutral-100"
-                      }`}
-                  >
-                    2
-                  </button>
-                  <button
-                    onClick={() => setCurrentPage(3)}
-                    className={`w-8 h-8 text-xs font-bold rounded-sm flex items-center justify-center ${currentPage === 3
-                      ? "bg-[#121212] text-white"
-                      : "border border-neutral-200 text-neutral-700 hover:bg-neutral-100"
-                      }`}
-                  >
-                    3
-                  </button>
-                  <button
-                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, 3))}
-                    className="w-8 h-8 text-xs text-neutral-400 hover:text-neutral-900 border border-neutral-200 rounded-sm flex items-center justify-center"
-                  >
-                    ›
-                  </button>
-                </div>
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-center space-x-2 pt-10">
+                    <button
+                      disabled={currentPage === 1}
+                      onClick={() => {
+                        setCurrentPage(prev => Math.max(prev - 1, 1));
+                        window.scrollTo({ top: 300, behavior: 'smooth' });
+                      }}
+                      className="w-8 h-8 text-xs text-neutral-400 hover:text-neutral-900 border border-neutral-200 rounded-sm flex items-center justify-center disabled:opacity-40 cursor-pointer"
+                    >
+                      ‹
+                    </button>
+
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                      <button
+                        key={pageNum}
+                        onClick={() => {
+                          setCurrentPage(pageNum);
+                          window.scrollTo({ top: 300, behavior: 'smooth' });
+                        }}
+                        className={`w-8 h-8 text-xs font-bold rounded-sm flex items-center justify-center cursor-pointer transition-all ${currentPage === pageNum
+                          ? "bg-[#121212] text-white shadow-xs"
+                          : "border border-neutral-200 text-neutral-700 hover:bg-neutral-100"
+                          }`}
+                      >
+                        {pageNum}
+                      </button>
+                    ))}
+
+                    <button
+                      disabled={currentPage === totalPages}
+                      onClick={() => {
+                        setCurrentPage(prev => Math.min(prev + 1, totalPages));
+                        window.scrollTo({ top: 300, behavior: 'smooth' });
+                      }}
+                      className="w-8 h-8 text-xs text-neutral-400 hover:text-neutral-900 border border-neutral-200 rounded-sm flex items-center justify-center disabled:opacity-40 cursor-pointer"
+                    >
+                      ›
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </section>
