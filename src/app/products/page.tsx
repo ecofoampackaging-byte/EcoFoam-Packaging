@@ -19,7 +19,7 @@ export default function ProductsPage() {
   const [selectedProductTitle, setSelectedProductTitle] = useState<string | undefined>(undefined);
 
   const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
-  const [selectedFinishes, setSelectedFinishes] = useState<string[]>(["Frosted Finish"]);
+  const [selectedFinishes, setSelectedFinishes] = useState<string[]>([]);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState("Recommended");
   const [currentPage, setCurrentPage] = useState(1);
@@ -114,7 +114,7 @@ export default function ProductsPage() {
                   <h4 className="font-sans font-semibold text-xs text-neutral-900 mb-2">
                     Material
                   </h4>
-                  {["High-Clarity Glass", "Recycled Eco-Glass", "Textured Glass"].map((mat) => (
+                  {["Bio-PET Plastic", "High-Clarity Glass", "Recycled Eco-Glass", "Textured Glass"].map((mat) => (
                     <label
                       key={mat}
                       className="flex items-center space-x-2.5 text-xs text-neutral-600 hover:text-neutral-900 cursor-pointer"
@@ -134,7 +134,7 @@ export default function ProductsPage() {
                   <h4 className="font-sans font-semibold text-xs text-neutral-900 mb-2">
                     Finish
                   </h4>
-                  {["Frosted Finish", "Clear Gloss"].map((fin) => (
+                  {["Matte Smooth", "Frosted Finish", "Clear Gloss"].map((fin) => (
                     <label
                       key={fin}
                       className="flex items-center space-x-2.5 text-xs text-neutral-600 hover:text-neutral-900 cursor-pointer"
@@ -154,7 +154,7 @@ export default function ProductsPage() {
                   <h4 className="font-sans font-semibold text-xs text-neutral-900 mb-2">
                     Color
                   </h4>
-                  {["Amber Glass", "Flint (Clear)", "Cobalt Blue"].map((col) => (
+                  {["Opaque White / Amber", "Amber Glass", "Flint (Clear)", "Clear / Green / Amber"].map((col) => (
                     <label
                       key={col}
                       className="flex items-center space-x-2.5 text-xs text-neutral-600 hover:text-neutral-900 cursor-pointer"
