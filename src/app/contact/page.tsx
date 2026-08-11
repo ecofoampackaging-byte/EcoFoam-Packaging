@@ -7,12 +7,14 @@ import Footer from "@/components/Footer";
 import QuoteModal from "@/components/QuoteModal";
 import SampleModal from "@/components/SampleModal";
 import PageTransition from "@/components/PageTransition";
-import { CheckCircle, MapPin, Factory, PhoneCall } from "lucide-react";
+import { CheckCircle, MapPin, PhoneCall, Mail, ExternalLink, Copy, Check } from "lucide-react";
+import { companyContact } from "@/data/company";
 
 export default function ContactPage() {
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [sampleOpen, setSampleOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [copied, setCopied] = useState<string | null>(null);
 
   const [form, setForm] = useState({
     fullName: "",
@@ -20,6 +22,12 @@ export default function ContactPage() {
     email: "",
     details: "",
   });
+
+  const handleCopy = (text: string, type: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(type);
+    setTimeout(() => setCopied(null), 2000);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,12 +46,114 @@ export default function ContactPage() {
         <main className="flex-grow max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 space-y-12">
           {/* Page Hero Header */}
           <div className="max-w-3xl space-y-4">
+            <span className="text-[10px] tracking-[0.25em] uppercase font-bold text-[#C5A059] block">
+              OFFICIAL CONTACT & HEADQUARTERS
+            </span>
             <h1 className="font-serif text-4xl sm:text-5xl font-normal text-[#121212] tracking-tight">
-              Connect with Elegance.
+              Connect with EcoFoam Packaging.
             </h1>
             <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-sans font-light">
-              Whether you require bespoke structural design, technical specifications, or global logistics coordination, our specialists are available to architect your packaging solution.
+              Reach out directly to our packaging specialists for structural designs, custom bulk pricing, or evaluation sample kits.
             </p>
+          </div>
+
+          {/* Quick Contact Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Phone Card */}
+            <div className="bg-white p-6 rounded-sm border border-neutral-200 shadow-xs space-y-4 hover:border-[#121212] transition-colors">
+              <div className="flex items-center justify-between">
+                <div className="w-10 h-10 rounded-full bg-[#121212] text-white flex items-center justify-center">
+                  <PhoneCall className="w-4 h-4" />
+                </div>
+                <button
+                  onClick={() => handleCopy(companyContact.rawPhone, "phone")}
+                  className="text-neutral-400 hover:text-neutral-900 text-xs flex items-center space-x-1"
+                  title="Copy Phone Number"
+                >
+                  {copied === "phone" ? (
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5" />
+                  )}
+                </button>
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
+                  Direct Phone Support
+                </p>
+                <a
+                  href={`tel:${companyContact.rawPhone}`}
+                  className="text-lg font-bold text-[#121212] hover:underline block pt-1"
+                >
+                  {companyContact.phone}
+                </a>
+                <p className="text-xs text-neutral-500 pt-1">
+                  Mon - Sat, 9:00 AM - 7:00 PM IST
+                </p>
+              </div>
+            </div>
+
+            {/* Email Card */}
+            <div className="bg-white p-6 rounded-sm border border-neutral-200 shadow-xs space-y-4 hover:border-[#121212] transition-colors">
+              <div className="flex items-center justify-between">
+                <div className="w-10 h-10 rounded-full bg-[#121212] text-white flex items-center justify-center">
+                  <Mail className="w-4 h-4" />
+                </div>
+                <button
+                  onClick={() => handleCopy(companyContact.email, "email")}
+                  className="text-neutral-400 hover:text-neutral-900 text-xs flex items-center space-x-1"
+                  title="Copy Email Address"
+                >
+                  {copied === "email" ? (
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5" />
+                  )}
+                </button>
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
+                  Official Email Address
+                </p>
+                <a
+                  href={`mailto:${companyContact.email}`}
+                  className="text-base font-bold text-[#121212] hover:underline block pt-1 break-all"
+                >
+                  {companyContact.email}
+                </a>
+                <p className="text-xs text-neutral-500 pt-1">
+                  Guaranteed response within 4 hours
+                </p>
+              </div>
+            </div>
+
+            {/* Address Card */}
+            <div className="bg-white p-6 rounded-sm border border-neutral-200 shadow-xs space-y-4 hover:border-[#121212] transition-colors">
+              <div className="flex items-center justify-between">
+                <div className="w-10 h-10 rounded-full bg-[#121212] text-white flex items-center justify-center">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <a
+                  href={companyContact.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-400 hover:text-[#121212] text-xs flex items-center space-x-1"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
+                  Office Location
+                </p>
+                <p className="text-xs font-semibold text-[#121212] pt-1 leading-snug">
+                  {companyContact.locality}, {companyContact.city}
+                </p>
+                <p className="text-xs text-neutral-500 pt-1">
+                  {companyContact.state} {companyContact.pincode}, India
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* 2 Column Main Content Grid */}
@@ -51,7 +161,7 @@ export default function ContactPage() {
             {/* Left Column: Direct Inquiry Form */}
             <div className="lg:col-span-7 bg-white p-8 sm:p-12 rounded-sm border border-neutral-200/80 shadow-xs">
               <h2 className="font-serif text-2xl text-[#121212] font-normal mb-8">
-                Direct Inquiry
+                Send Direct Inquiry
               </h2>
 
               {!submitted ? (
@@ -144,7 +254,7 @@ export default function ContactPage() {
                     Inquiry Received
                   </h3>
                   <p className="text-xs text-neutral-600 max-w-md mx-auto leading-relaxed">
-                    Thank you, <span className="font-bold text-neutral-900">{form.fullName}</span>. Your requirements have been submitted to our technical specialists. We will contact <span className="font-bold text-neutral-900">{form.email}</span> within 4 business hours.
+                    Thank you, <span className="font-bold text-neutral-900">{form.fullName}</span>. Your requirements have been submitted to EcoFoam Packaging. We will contact <span className="font-bold text-neutral-900">{form.email}</span> within 4 business hours. You can also reach us directly at <a href={`mailto:${companyContact.email}`} className="font-bold underline text-[#121212]">{companyContact.email}</a>.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -156,90 +266,67 @@ export default function ContactPage() {
               )}
             </div>
 
-            {/* Right Column */}
-            <div className="lg:col-span-5 space-y-8">
-              <div className="rounded-sm overflow-hidden border border-neutral-200 shadow-xs bg-white space-y-1 p-1">
-                <div className="relative aspect-[16/9] w-full rounded-xs overflow-hidden">
-                  <Image
-                    src="/images/frosted-pharma.png"
-                    alt="EcoFoam Packaging Glass Collection"
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/20" />
-                  <div className="absolute bottom-3 left-4 text-white">
-                    <span className="text-[10px] uppercase font-bold tracking-wider bg-black/50 backdrop-blur-xs px-2.5 py-1 rounded-xs">
-                      Global Headquarters
-                    </span>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-1">
-                  <div className="relative aspect-[4/3] w-full rounded-xs overflow-hidden">
-                    <Image
-                      src="/images/hero-glass.png"
-                      alt="Glass packaging bottles"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="relative aspect-[4/3] w-full rounded-xs overflow-hidden">
-                    <Image
-                      src="/images/clear-nutra.png"
-                      alt="Nutraceutical jars"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-              </div>
-
+            {/* Right Column: Address Details & Google Maps Embed */}
+            <div className="lg:col-span-5 space-y-6">
               <div className="bg-white p-8 rounded-sm border border-neutral-200/80 shadow-xs space-y-6">
-                <h3 className="font-serif text-2xl text-[#121212] font-normal border-b border-neutral-100 pb-4">
-                  Global Reach
-                </h3>
-
-                <div className="space-y-1">
-                  <div className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-wider text-neutral-400">
-                    <MapPin className="w-3.5 h-3.5 text-[#C5A059]" />
-                    <span>HEADQUARTERS</span>
-                  </div>
-                  <p className="text-xs font-semibold text-neutral-900">
-                    1200 Glassworks Avenue
-                  </p>
-                  <p className="text-xs text-neutral-600">
-                    Milan, MI 20121, Italy
-                  </p>
+                <div className="flex items-center justify-between border-b border-neutral-100 pb-4">
+                  <h3 className="font-serif text-2xl text-[#121212] font-normal">
+                    Headquarters Address
+                  </h3>
+                  <span className="text-[9px] uppercase font-bold tracking-wider bg-[#121212] text-white px-2.5 py-1 rounded-xs">
+                    INDIA HQ
+                  </span>
                 </div>
 
-                <div className="space-y-1">
-                  <div className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-wider text-neutral-400">
-                    <Factory className="w-3.5 h-3.5 text-[#C5A059]" />
-                    <span>MANUFACTURING PLANTS</span>
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <MapPin className="w-4 h-4 text-[#C5A059] flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="text-xs font-bold text-neutral-900">
+                        EcoFoam Packaging Solutions
+                      </p>
+                      <p className="text-xs text-neutral-600 mt-1 leading-relaxed">
+                        {companyContact.address}
+                      </p>
+                      <div className="mt-2 inline-flex items-center space-x-2 text-[10px] bg-neutral-100 px-2.5 py-1 rounded text-neutral-700 font-mono">
+                        <span>Plus Code:</span>
+                        <span className="font-bold text-[#121212]">{companyContact.plusCode}</span>
+                      </div>
+                    </div>
                   </div>
-                  <p className="text-xs text-neutral-700">
-                    Dresden, Germany
-                  </p>
-                  <p className="text-xs text-neutral-700">
-                    Lyon, France
-                  </p>
                 </div>
 
-                <div className="space-y-2 pt-2 border-t border-neutral-100">
-                  <div className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-wider text-neutral-400">
-                    <PhoneCall className="w-3.5 h-3.5 text-[#C5A059]" />
-                    <span>GLOBAL SUPPORT</span>
-                  </div>
+                {/* Google Map Embed Container */}
+                <div className="w-full h-64 rounded-sm overflow-hidden border border-neutral-200 relative bg-neutral-100">
+                  <iframe
+                    title="EcoFoam Packaging Location Map"
+                    src={companyContact.googleMapsEmbed}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={false}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
 
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="text-neutral-500">EU & UK</span>
-                    <span className="font-bold text-neutral-900">+39 02 1234 5678</span>
-                  </div>
-
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="text-neutral-500">Americas</span>
-                    <span className="font-bold text-neutral-900">+1 800 555 0199</span>
-                  </div>
+                <div className="pt-2 flex items-center justify-between border-t border-neutral-100 text-xs">
+                  <a
+                    href={companyContact.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-[#121212] font-semibold hover:underline"
+                  >
+                    <span>Open in Google Maps</span>
+                    <ExternalLink className="w-3.5 h-3.5 ml-1" />
+                  </a>
+                  <a
+                    href={`tel:${companyContact.rawPhone}`}
+                    className="inline-flex items-center text-neutral-600 font-medium hover:text-[#121212]"
+                  >
+                    <PhoneCall className="w-3 h-3 mr-1 text-[#C5A059]" />
+                    <span>{companyContact.phone}</span>
+                  </a>
                 </div>
               </div>
             </div>

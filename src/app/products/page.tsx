@@ -265,31 +265,28 @@ export default function ProductsPage() {
                   </button>
                   <button
                     onClick={() => setCurrentPage(1)}
-                    className={`w-8 h-8 text-xs font-bold rounded-sm flex items-center justify-center ${
-                      currentPage === 1
-                        ? "bg-[#121212] text-white"
-                        : "border border-neutral-200 text-neutral-700 hover:bg-neutral-100"
-                    }`}
+                    className={`w-8 h-8 text-xs font-bold rounded-sm flex items-center justify-center ${currentPage === 1
+                      ? "bg-[#121212] text-white"
+                      : "border border-neutral-200 text-neutral-700 hover:bg-neutral-100"
+                      }`}
                   >
                     1
                   </button>
                   <button
                     onClick={() => setCurrentPage(2)}
-                    className={`w-8 h-8 text-xs font-bold rounded-sm flex items-center justify-center ${
-                      currentPage === 2
-                        ? "bg-[#121212] text-white"
-                        : "border border-neutral-200 text-neutral-700 hover:bg-neutral-100"
-                    }`}
+                    className={`w-8 h-8 text-xs font-bold rounded-sm flex items-center justify-center ${currentPage === 2
+                      ? "bg-[#121212] text-white"
+                      : "border border-neutral-200 text-neutral-700 hover:bg-neutral-100"
+                      }`}
                   >
                     2
                   </button>
                   <button
                     onClick={() => setCurrentPage(3)}
-                    className={`w-8 h-8 text-xs font-bold rounded-sm flex items-center justify-center ${
-                      currentPage === 3
-                        ? "bg-[#121212] text-white"
-                        : "border border-neutral-200 text-neutral-700 hover:bg-neutral-100"
-                    }`}
+                    className={`w-8 h-8 text-xs font-bold rounded-sm flex items-center justify-center ${currentPage === 3
+                      ? "bg-[#121212] text-white"
+                      : "border border-neutral-200 text-neutral-700 hover:bg-neutral-100"
+                      }`}
                   >
                     3
                   </button>

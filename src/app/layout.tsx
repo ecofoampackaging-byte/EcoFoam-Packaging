@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
     siteName: "EcoFoam Packaging Solutions",
     type: "website",
     locale: "en_US",
-  },
+    },
   robots: {
     index: true,
     follow: true,
@@ -54,6 +55,7 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${jakarta.variable}`}>
       <body className="font-sans bg-[#FBFBF9] text-[#121212] antialiased selection:bg-[#C5A059] selection:text-white">
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );

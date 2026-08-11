@@ -51,20 +51,36 @@ export const companyPillars: CompanyPillar[] = [
   },
 ];
 
+export const companyContact = {
+  email: "Ecofoampackaging@gmail.com",
+  phone: "+91 97111 76696",
+  rawPhone: "9711176696",
+  address: "H83V+F46, Village Chhalera & Sadarpur, Sadarpur, Sector 44, Noida, Uttar Pradesh 201303",
+  plusCode: "H83V+F46",
+  village: "Village Chhalera & Sadarpur",
+  locality: "Sadarpur, Sector 44",
+  city: "Noida",
+  state: "Uttar Pradesh",
+  pincode: "201303",
+  country: "India",
+  googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=H83V%2BF46%2C+Village+Chhalera+%26+Sadarpur%2C+Sadarpur%2C+Sector+44%2C+Noida%2C+Uttar+Pradesh+201303",
+  googleMapsEmbed: "https://maps.google.com/maps?q=H83V%2BF46%2C%20Village%20Chhalera%20%26%20Sadarpur%2C%20Sadarpur%2C%20Sector%2044%2C%20Noida%2C%20Uttar%20Pradesh%20201303&t=&z=15&ie=UTF8&iwloc=&output=embed"
+};
+
 export const globalHubs: GlobalHub[] = [
   {
+    name: "Noida Head Office & Logistics Hub",
+    role: "Global Headquarters, Sales & Primary Operations",
+    location: "Noida, Uttar Pradesh, India",
+  },
+  {
     name: "Zurich R&D Facility",
-    role: "Global Headquarters & Glass Formulation Lab",
+    role: "Glass Formulation Lab & Material Science",
     location: "Zürich, Switzerland",
   },
   {
     name: "Milan Design Studio",
     role: "Bespoke Silhouette Engineering & Hot-Stamping",
     location: "Milano, Italy",
-  },
-  {
-    name: "New York Hub",
-    role: "Americas Distribution & Rapid Sample Dispatch",
-    location: "New York, USA",
   },
 ];
