@@ -73,14 +73,4 @@ export const globalHubs: GlobalHub[] = [
     role: "Global Headquarters, Sales & Primary Operations",
     location: "Noida, Uttar Pradesh, India",
   },
-  {
-    name: "Zurich R&D Facility",
-    role: "Glass Formulation Lab & Material Science",
-    location: "Zürich, Switzerland",
-  },
-  {
-    name: "Milan Design Studio",
-    role: "Bespoke Silhouette Engineering & Hot-Stamping",
-    location: "Milano, Italy",
-  },
 ];

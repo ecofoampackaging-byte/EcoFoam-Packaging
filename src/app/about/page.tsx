@@ -249,7 +249,7 @@ export default function AboutPage() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="max-w-xl mx-auto">
               {globalHubs.map((hub, idx) => (
                 <div
                   key={idx}
