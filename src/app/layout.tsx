@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | EcoFoam Packaging",
   },
   description:
-    "Premium glass packaging solutions for pharmaceuticals, cosmetics, and nutraceuticals. Defined by clarity, structural integrity, and minimalist luxury.",
+    "Premium acrylic bottles packaging solutions for pharmaceuticals, cosmetics, and nutraceuticals. Defined by clarity, structural integrity, and minimalist luxury.",
   keywords: [
     "Glass Packaging",
     "EcoFoam Packaging",

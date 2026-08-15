@@ -22,8 +22,8 @@ export const sampleBoxes: SampleKitBox[] = [
 ];
 
 export const companyStats: CompanyStat[] = [
-  { label: "Annual Production", value: "450M+" },
-  { label: "Global Distribution", value: "65+ Countries" },
+  { label: "Annual Production", value: "100M+" },
+  { label: "Global Distribution", value: "15+ Countries" },
   { label: "Manufacturing Tolerance", value: "±0.05 mm" },
   { label: "Cleanroom Standard", value: "ISO 15378" },
 ];
@@ -40,9 +40,9 @@ export const companyPillars: CompanyPillar[] = [
       "High-density amber formulation specifically calibrated to block light spectrum wavelengths between 290nm and 450nm.",
   },
   {
-    title: "100% Recyclable Eco-Glass",
+    title: "100% Recyclable Bio-PET & Acrylic",
     description:
-      "Infinitely recyclable glass crafted with up to 45% post-consumer cullet glass to minimize global carbon footprint.",
+      "Eco-friendly recyclable plastic & acrylic polymer bottles crafted to minimize global carbon footprint.",
   },
   {
     title: "360° Laser Optical Quality Control",

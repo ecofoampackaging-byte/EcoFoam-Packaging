@@ -47,7 +47,7 @@ export default function ProductsPage() {
   }, [selectedMaterials, selectedFinishes, selectedColors]);
 
   const ITEMS_PER_PAGE = 6;
-  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / ITEMS_PER_PAGE));
+  const totalPages = Math.min(2, Math.max(1, Math.ceil(filteredProducts.length / ITEMS_PER_PAGE)));
 
   const paginatedProducts = useMemo(() => {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -82,7 +82,7 @@ export default function ProductsPage() {
           <section className="relative w-full h-[380px] sm:h-[440px] flex items-center justify-center overflow-hidden bg-[#5E8E87]">
             <Image
               src="/images/clear-nutra.png"
-              alt="EcoFoam Premium Glass Solutions"
+              alt="EcoFoam Premium Plastic & Acrylic Solutions"
               fill
               priority
               className="object-cover filter brightness-[0.92] contrast-[1.05]"
@@ -91,10 +91,10 @@ export default function ProductsPage() {
 
             <div className="relative z-10 max-w-2xl mx-auto px-6 py-10 bg-white/90 backdrop-blur-md text-center shadow-lg border border-white/40">
               <h1 className="font-serif text-3xl sm:text-4xl text-[#121212] tracking-tight font-normal mb-3">
-                PREMIUM GLASS SOLUTIONS
+                PREMIUM PLASTIC & ACRYLIC BOTTLES
               </h1>
               <p className="text-neutral-700 text-xs sm:text-sm font-sans font-light leading-relaxed max-w-md mx-auto">
-                Exquisite glass vessels for beauty, home fragrance, and premium lifestyle brands. Explore our artisanal collection.
+                Exquisite plastic & acrylic bottles for beauty, home fragrance, and premium lifestyle brands. Explore our artisanal collection.
               </p>
             </div>
           </section>
@@ -114,7 +114,7 @@ export default function ProductsPage() {
                   <h4 className="font-sans font-semibold text-xs text-neutral-900 mb-2">
                     Material
                   </h4>
-                  {["Bio-PET Plastic", "High-Clarity Glass", "Recycled Eco-Glass", "Textured Glass"].map((mat) => (
+                  {["Bio-PET Plastic", "Acrylic Bottles", "High-Clarity Glass", "Recycled Eco-Glass", "Textured Glass"].map((mat) => (
                     <label
                       key={mat}
                       className="flex items-center space-x-2.5 text-xs text-neutral-600 hover:text-neutral-900 cursor-pointer"

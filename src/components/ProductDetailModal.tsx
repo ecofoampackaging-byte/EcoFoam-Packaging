@@ -2,13 +2,14 @@
 
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { X, Check, ShieldCheck, Cpu, ArrowRight } from "lucide-react";
 import { ProductItem } from "@/types";
 
 interface ProductDetailModalProps {
   product: ProductItem | null;
   onClose: () => void;
-  onOpenQuote: (productName: string) => void;
+  onOpenQuote?: (productName: string) => void;
 }
 
 export default function ProductDetailModal({
@@ -16,6 +17,8 @@ export default function ProductDetailModal({
   onClose,
   onOpenQuote,
 }: ProductDetailModalProps) {
+  const router = useRouter();
+
   if (!product) return null;
 
   return (
@@ -88,9 +91,9 @@ export default function ProductDetailModal({
             <button
               onClick={() => {
                 onClose();
-                onOpenQuote(product.title);
+                router.push("/contact");
               }}
-              className="w-full py-3.5 bg-[#121212] text-white text-xs font-semibold uppercase tracking-wider rounded-sm hover:bg-[#2b2b2b] transition-all flex items-center justify-center space-x-2 shadow-xs"
+              className="w-full py-3.5 bg-[#121212] text-white text-xs font-semibold uppercase tracking-wider rounded-sm hover:bg-[#2b2b2b] transition-all flex items-center justify-center space-x-2 shadow-xs cursor-pointer"
             >
               <span>Request Quote For This Model</span>
               <ArrowRight className="w-4 h-4" />

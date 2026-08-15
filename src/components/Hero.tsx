@@ -33,11 +33,11 @@ export default function Hero({ onExploreClick }: HeroProps) {
       <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 w-full py-16 lg:py-24">
         <div className="w-full max-w-lg bg-white/95 backdrop-blur-sm p-8 sm:p-12 shadow-xl border border-neutral-100 rounded-none sm:rounded-sm transition-all duration-300">
           <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.65rem] leading-[1.25] font-normal text-[#121212] mb-6 tracking-tight">
-            Excellence in Glass Packaging
+            Excellence in Plastic & Acrylic Packaging
           </h1>
 
           <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-sans mb-8">
-            Precision-engineered glass vessels for pharmaceutical, cosmetic, and
+            Precision-engineered plastic & acrylic bottles for pharmaceutical, cosmetic, and
             nutraceutical applications. Defined by clarity, structural integrity,
             and minimalist luxury.
           </p>

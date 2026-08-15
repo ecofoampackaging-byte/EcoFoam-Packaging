@@ -24,7 +24,7 @@ export default function ProductCollection({
             Our Premium Vessel Collection
           </h2>
           <p className="text-neutral-600 text-sm sm:text-base font-sans font-light leading-relaxed">
-            A curated selection of high performance glass containers designed to protect and elevate your product.
+            A curated selection of high performance plastic & acrylic containers designed to protect and elevate your product.
           </p>
         </div>
 
@@ -57,19 +57,13 @@ export default function ProductCollection({
                 </div>
 
                 {/* Quick Action Overlay */}
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <button
                     onClick={() => onSelectProduct(product)}
                     className="px-4 py-2 bg-white text-[#121212] text-xs font-medium uppercase tracking-wider rounded-sm shadow-md hover:bg-neutral-100 transition-all flex items-center gap-1.5"
                   >
                     <Eye className="w-3.5 h-3.5" />
                     View Details
-                  </button>
-                  <button
-                    onClick={() => onQuickQuoteProduct(product)}
-                    className="px-4 py-2 bg-[#121212] text-white text-xs font-medium uppercase tracking-wider rounded-sm shadow-md hover:bg-[#2b2b2b] transition-all"
-                  >
-                    Quote Product
                   </button>
                 </div>
               </div>
