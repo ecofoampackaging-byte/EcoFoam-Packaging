@@ -81,8 +81,8 @@ export default function ProductsPage() {
           {/* Product Page Hero */}
           <section className="relative w-full h-[380px] sm:h-[440px] flex items-center justify-center overflow-hidden bg-[#5E8E87]">
             <Image
-              src="/images/client-teal-nmn.png"
-              alt="EcoForm Premium Bottles"
+              src="/images/clear-nutra.png"
+              alt="EcoForm Premium Plastic & Acrylic Solutions"
               fill
               priority
               className="object-cover filter brightness-[0.92] contrast-[1.05]"

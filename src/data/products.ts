@@ -52,7 +52,7 @@ export const homepageProducts: ProductItem[] = [
 ];
 
 export const fullProductCatalog: CatalogProduct[] = [
-  // Page 1 Products (1-6)
+  // Page 1 Products (1-6) - Real Client Photoshoot
   {
     id: "amber-medicine-gold-cap",
     title: "Amber Glass Health Supplement Bottle - 150ml",
@@ -168,7 +168,7 @@ export const fullProductCatalog: CatalogProduct[] = [
     },
   },
 
-  // Page 2 Products (7-12)
+  // Page 2 Products (7-12) - Real Client Photoshoot
   {
     id: "tall-frosted-smooth-gold",
     title: "Tall Frosted Health Product Bottle - 200ml",

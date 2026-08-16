@@ -58,8 +58,8 @@ export default function AboutPage() {
           <section className="relative w-full min-h-[580px] lg:min-h-[640px] flex items-center overflow-hidden bg-[#EBE7DF]">
             <div className="absolute inset-0 z-0">
               <Image
-                src="/images/client-health-beige.png"
-                alt="EcoForm Health Packaging Bottles"
+                src="/images/about-hero.png"
+                alt="EcoForm Packaging Solutions"
                 fill
                 priority
                 className="object-cover object-center filter brightness-[0.98] contrast-[1.02]"
@@ -150,7 +150,7 @@ export default function AboutPage() {
                 {/* Left Visual Banner */}
                 <div className="lg:col-span-6 relative aspect-[4/3] rounded-sm overflow-hidden border border-neutral-200 shadow-lg group">
                   <Image
-                    src="/images/client-teal-nmn.png"
+                    src="/images/about-factory.png"
                     alt="EcoForm Precision Acrylic Bottles Manufacturing"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
