@@ -58,7 +58,7 @@ export default function PrivacyPolicyPage() {
               Privacy Policy & Terms
             </h1>
             <p className="text-neutral-700 text-sm sm:text-base leading-relaxed font-sans font-light max-w-2xl">
-              EcoFoam Packaging Solutions is committed to safeguarding client data, B2B inquiry details, and intellectual property across our global packaging operations.
+              EcoForm Packaging Solutions is committed to safeguarding client data, B2B inquiry details, and intellectual property across our global packaging operations.
             </p>
             <div className="pt-2 flex flex-wrap gap-4 text-xs font-medium text-neutral-600 border-t border-[#E5DCCB]/80">
               <span className="pt-2">Effective Date: August 2024</span>
@@ -79,7 +79,7 @@ export default function PrivacyPolicyPage() {
                   COPYRIGHT NOTICE
                 </span>
                 <p className="text-sm font-bold text-[#121212]">
-                  Copyright issued by EcoFoam Packaging
+                  Copyright issued by EcoForm Packaging
                 </p>
                 <p className="text-xs text-neutral-600 leading-relaxed font-light">
                   All trademarks, structural designs, product catalog specifications, and brand assets are protected under applicable copyright laws.
@@ -116,7 +116,7 @@ export default function PrivacyPolicyPage() {
                 <h2>1. Information We Collect</h2>
               </div>
               <p className="text-neutral-600 font-light">
-                When you interact with the EcoFoam Packaging platform, request custom glass packaging quotes, or submit sample kit requests, we collect necessary business details to fulfill your inquiries:
+                When you interact with the EcoForm Packaging platform, request custom glass packaging quotes, or submit sample kit requests, we collect necessary business details to fulfill your inquiries:
               </p>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
                 <li className="flex items-start space-x-2 text-xs text-neutral-700 bg-[#FBFBF9] p-3 rounded border border-neutral-100">
@@ -167,7 +167,7 @@ export default function PrivacyPolicyPage() {
                   <div>
                     <strong className="text-[#121212] font-bold">Copyright Statement:</strong>
                     <p className="mt-1 text-neutral-700 leading-relaxed font-light">
-                      <strong>Copyright issued by EcoFoam Packaging.</strong> All website content, high-resolution product imagery, glass manufacturing specifications, and branding elements are strictly copyrighted by EcoFoam Packaging. Any unauthorized duplication or distribution without written consent is strictly prohibited.
+                      <strong>Copyright issued by EcoForm Packaging.</strong> All website content, high-resolution product imagery, glass manufacturing specifications, and branding elements are strictly copyrighted by EcoForm Packaging. Any unauthorized duplication or distribution without written consent is strictly prohibited.
                     </p>
                   </div>
                 </div>
@@ -191,7 +191,7 @@ export default function PrivacyPolicyPage() {
                 <h2>4. Data Confidentiality & Non-Disclosure</h2>
               </div>
               <p className="text-neutral-600 font-light">
-                EcoFoam Packaging enforces strict technical standards to ensure confidentiality. We never sell, rent, or trade customer contact details or structural product specs to third-party advertisers.
+                EcoForm Packaging enforces strict technical standards to ensure confidentiality. We never sell, rent, or trade customer contact details or structural product specs to third-party advertisers.
               </p>
             </section>
 

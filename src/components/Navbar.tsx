@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
@@ -25,12 +26,19 @@ export default function Navbar({ onOpenQuote, onOpenSample }: NavbarProps) {
   return (
     <header className="sticky top-0 z-50 bg-[#FBFBF9]/95 backdrop-blur-md border-b border-black/5 transition-all duration-300">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center cursor-pointer">
-            <span className="font-serif text-2xl sm:text-[1.65rem] font-normal tracking-tight text-[#121212]">
-              EcoFoam Packaging
-            </span>
+        <div className="flex items-center justify-between h-20 sm:h-22">
+          {/* Official Logo */}
+          <Link href="/" className="flex items-center gap-3 cursor-pointer group py-1.5">
+            <div className="relative h-14 sm:h-16 w-auto flex items-center">
+              <Image
+                src="/images/logo.png"
+                alt="EcoForm Packaging"
+                width={220}
+                height={80}
+                priority
+                className="h-14 sm:h-16 w-auto object-contain group-hover:scale-[1.03] transition-transform duration-300"
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation with Animated Sliding Active Line */}

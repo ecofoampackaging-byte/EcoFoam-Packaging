@@ -28,8 +28,8 @@ export default function ProductCollection({
           </p>
         </div>
 
-        {/* 2-Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        {/* 3-Card Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-8">
           {homepageProducts.map((product) => (
             <div
               key={product.id}

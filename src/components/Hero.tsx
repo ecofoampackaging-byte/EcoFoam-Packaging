@@ -13,8 +13,8 @@ export default function Hero({ onExploreClick }: HeroProps) {
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-glass.png"
-          alt="EcoFoam Glass Packaging Vessels"
+          src="/images/client-marble-display.png"
+          alt="EcoForm Packaging Bottles"
           fill
           priority
           className="object-cover object-center filter brightness-[0.98] contrast-[1.02]"

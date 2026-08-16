@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { X, CheckCircle, Truck } from "lucide-react";
 import { sampleBoxes } from "@/data/company";
 
@@ -10,7 +11,7 @@ interface SampleModalProps {
 }
 
 export default function SampleModal({ isOpen, onClose }: SampleModalProps) {
-  const [selectedSet, setSelectedSet] = useState("ecofoam-box");
+  const [selectedSet, setSelectedSet] = useState("ecoform-box");
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -28,15 +29,25 @@ export default function SampleModal({ isOpen, onClose }: SampleModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
       <div className="bg-white max-w-xl w-full rounded-sm shadow-2xl overflow-hidden border border-neutral-200">
-        {/* Header matching exact dark charcoal reference image */}
-        <div className="bg-[#14181B] text-white px-6 sm:px-8 py-6 flex items-start justify-between">
-          <div className="space-y-1">
-            <span className="text-[10px] tracking-[0.2em] uppercase text-neutral-400 block font-sans font-bold">
-              EVALUATION KIT
-            </span>
-            <h3 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-white">
-              Order EcoFoam Sample Kit
-            </h3>
+        {/* Header matching dark charcoal theme with official logo */}
+        <div className="bg-[#14181B] text-white px-6 sm:px-8 py-5 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="relative w-9 h-9 shrink-0">
+              <Image
+                src="/images/logo-mark.png"
+                alt="EcoForm Packaging"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div>
+              <span className="text-[9px] tracking-[0.2em] uppercase text-neutral-400 block font-sans font-bold">
+                EVALUATION KIT
+              </span>
+              <h3 className="font-serif text-xl sm:text-2xl font-normal tracking-tight text-white">
+                Order EcoForm Sample Kit
+              </h3>
+            </div>
           </div>
           <button
             onClick={onClose}
@@ -152,7 +163,7 @@ export default function SampleModal({ isOpen, onClose }: SampleModalProps) {
               Sample Order Confirmed
             </h4>
             <p className="text-xs sm:text-sm text-neutral-600 max-w-sm mx-auto leading-relaxed">
-              Your EcoFoam evaluation kit has been dispatched. Tracking number will be sent to <span className="font-semibold text-neutral-900">{form.email}</span>.
+              Your EcoForm evaluation kit has been dispatched. Tracking number will be sent to <span className="font-semibold text-neutral-900">{form.email}</span>.
             </p>
             <button
               onClick={() => {

@@ -58,8 +58,8 @@ export default function AboutPage() {
           <section className="relative w-full min-h-[580px] lg:min-h-[640px] flex items-center overflow-hidden bg-[#EBE7DF]">
             <div className="absolute inset-0 z-0">
               <Image
-                src="/images/about-hero.png"
-                alt="EcoFoam Glass Cleanroom Packaging Laboratory"
+                src="/images/client-health-beige.png"
+                alt="EcoForm Health Packaging Bottles"
                 fill
                 priority
                 className="object-cover object-center filter brightness-[0.98] contrast-[1.02]"
@@ -143,15 +143,112 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* The EcoFoam Standard Section */}
+          {/* Acrylic Bottles Manufacturing Showcase Section */}
+          <section className="py-20 bg-white border-b border-neutral-200/80">
+            <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                {/* Left Visual Banner */}
+                <div className="lg:col-span-6 relative aspect-[4/3] rounded-sm overflow-hidden border border-neutral-200 shadow-lg group">
+                  <Image
+                    src="/images/client-teal-nmn.png"
+                    alt="EcoForm Precision Acrylic Bottles Manufacturing"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
+                    <span className="px-3 py-1 bg-white/90 backdrop-blur-md text-[#121212] text-[9px] font-bold uppercase tracking-wider rounded-full shadow-xs inline-block mb-1">
+                      PRECISION PMMA ACRYLIC
+                    </span>
+                    <h3 className="font-serif text-2xl font-normal text-white">
+                      Crystal Glass Clarity with Shatterproof Durability
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Right Content */}
+                <div className="lg:col-span-6 space-y-6">
+                  <div>
+                    <span className="text-[10px] tracking-[0.25em] uppercase font-bold text-[#C5A059] block mb-2">
+                      CORE MANUFACTURING CAPABILITY
+                    </span>
+                    <h2 className="font-serif text-3xl sm:text-4xl text-[#121212] font-normal leading-tight">
+                      Engineered Acrylic Bottles for Health, Pharma & Luxury Brands
+                    </h2>
+                  </div>
+
+                  <p className="text-neutral-600 text-sm leading-relaxed font-sans font-light">
+                    At <strong>EcoForm Packaging</strong>, we specialize in high-precision acrylic (PMMA) bottle manufacturing. Designed to replicate the heavy, refractive elegance of crystal glass while offering superior shatter resistance, lightweight portability, and flawless chemical stability.
+                  </p>
+
+                  {/* Feature Highlights Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div className="p-4 bg-[#FBFBF9] rounded-sm border border-neutral-200/80 space-y-1.5">
+                      <h4 className="text-xs font-bold text-[#121212] uppercase tracking-wider">
+                        Double-Wall Insulation
+                      </h4>
+                      <p className="text-[11px] text-neutral-600 leading-relaxed font-light">
+                        Dual-layer acrylic walls that preserve thermal stability and shield volatile botanical and pharmaceutical compounds from degradation.
+                      </p>
+                    </div>
+
+                    <div className="p-4 bg-[#FBFBF9] rounded-sm border border-neutral-200/80 space-y-1.5">
+                      <h4 className="text-xs font-bold text-[#121212] uppercase tracking-wider">
+                        Custom Silk-Screen & Gold Foil
+                      </h4>
+                      <p className="text-[11px] text-neutral-600 leading-relaxed font-light">
+                        Direct high-definition silk-screen printing, metallic hot-stamping, and graduation scales tailored to brand requirements.
+                      </p>
+                    </div>
+
+                    <div className="p-4 bg-[#FBFBF9] rounded-sm border border-neutral-200/80 space-y-1.5">
+                      <h4 className="text-xs font-bold text-[#121212] uppercase tracking-wider">
+                        Heavy-Base Luxury Feel
+                      </h4>
+                      <p className="text-[11px] text-neutral-600 leading-relaxed font-light">
+                        Weighted bottom profile delivering the luxurious hand-feel of prestige perfume and cosmetic glass bottles with zero breakage risk.
+                      </p>
+                    </div>
+
+                    <div className="p-4 bg-[#FBFBF9] rounded-sm border border-neutral-200/80 space-y-1.5">
+                      <h4 className="text-xs font-bold text-[#121212] uppercase tracking-wider">
+                        Factory Direct Spot Delivery
+                      </h4>
+                      <p className="text-[11px] text-neutral-600 leading-relaxed font-light">
+                        Readily available stock molds and custom runs with ultra-low MOQs and rapid fulfillment for immediate market launch.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="pt-2 flex items-center space-x-4">
+                    <Link
+                      href="/products"
+                      className="inline-flex items-center justify-center px-6 py-3 bg-[#121212] text-white text-xs tracking-wider uppercase font-semibold rounded-sm hover:bg-[#2b2b2b] transition-all shadow-xs group"
+                    >
+                      <span>View Acrylic Catalog</span>
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                    <button
+                      onClick={() => setSampleOpen(true)}
+                      className="inline-flex items-center justify-center px-6 py-3 border border-neutral-300 text-[#121212] text-xs tracking-wider uppercase font-semibold rounded-sm hover:bg-neutral-100 transition-all cursor-pointer"
+                    >
+                      Request Acrylic Sample
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* The EcoForm Standard Section */}
           <section className="py-20 bg-[#FBFBF9]">
             <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
               <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
                 <h2 className="font-serif text-3xl sm:text-4xl text-[#121212] font-normal">
-                  The EcoFoam Standard
+                  The EcoForm Standard
                 </h2>
                 <p className="text-neutral-600 text-sm font-sans font-light leading-relaxed">
-                  Engineered for perfection, designed for impact. Our commitment to quality ensures every vessel meets the highest industry standards.
+                  Engineered for perfection, designed for impact. Our acrylic and glass vessels undergo rigorous optical and pressure testing to ensure flawless performance.
                 </p>
               </div>
 
@@ -206,7 +303,7 @@ export default function AboutPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                   <div className="lg:col-span-7 relative h-[300px] sm:h-[340px] rounded-sm overflow-hidden group shadow-sm border border-neutral-200">
                     <Image
-                      src="/images/frosted-pharma.png"
+                      src="/images/client-health-beige.png"
                       alt="Pharma Glass Containers"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -231,7 +328,7 @@ export default function AboutPage() {
 
                   <div className="lg:col-span-5 relative h-[300px] sm:h-[340px] rounded-sm overflow-hidden group shadow-sm border border-neutral-200">
                     <Image
-                      src="/images/clear-nutra.png"
+                      src="/images/client-teal-nmn.png"
                       alt="Cosmetic Jars"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -255,7 +352,7 @@ export default function AboutPage() {
 
                 <div className="relative h-[300px] sm:h-[340px] w-full rounded-sm overflow-hidden group shadow-sm border border-neutral-200">
                   <Image
-                    src="/images/frosted-pharma.png"
+                    src="/images/client-marble-display.png"
                     alt="Nutraceutical Packaging Containers"
                     fill
                     className="object-cover object-bottom group-hover:scale-105 transition-transform duration-500"

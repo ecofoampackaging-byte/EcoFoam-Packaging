@@ -17,29 +17,34 @@ const jakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "EcoFoam Packaging Solutions | Excellence in Glass Packaging",
-    template: "%s | EcoFoam Packaging",
+    default: "EcoForm Packaging | Premium Pharmaceutical & Health Packaging Bottles",
+    template: "%s | EcoForm Packaging",
   },
   description:
-    "Premium acrylic bottles packaging solutions for pharmaceuticals, cosmetics, and nutraceuticals. Defined by clarity, structural integrity, and minimalist luxury.",
+    "Factory direct spot quick delivery health product bottles, frosted & clear vessels for pharmaceuticals, cosmetics, and nutraceuticals.",
   keywords: [
-    "Glass Packaging",
-    "EcoFoam Packaging",
-    "Pharmaceutical Glass",
-    "Cosmetic Jars",
-    "Amber Bottles",
+    "EcoForm Packaging",
+    "Health Product Bottles",
+    "Pharmaceutical Bottles",
+    "Nutraceutical Jars",
+    "Amber Glass Bottles",
     "Frosted Glass Vessels",
-    "Type I Borosilicate",
+    "NMN Bottles",
   ],
-  authors: [{ name: "EcoFoam Packaging Solutions" }],
+  icons: {
+    icon: "/images/logo-mark.png",
+    shortcut: "/images/logo-mark.png",
+    apple: "/images/logo-mark.png",
+  },
+  authors: [{ name: "EcoForm Packaging" }],
   openGraph: {
-    title: "EcoFoam Packaging Solutions | Excellence in Glass Packaging",
+    title: "EcoForm Packaging | Premium Health & Pharma Bottles",
     description:
-      "Precision-engineered glass vessels for pharmaceutical, cosmetic, and nutraceutical applications.",
-    siteName: "EcoFoam Packaging Solutions",
+      "Factory direct spot quick delivery health product bottles, frosted, amber, and clear vessels.",
+    siteName: "EcoForm Packaging",
     type: "website",
     locale: "en_US",
-    },
+  },
   robots: {
     index: true,
     follow: true,

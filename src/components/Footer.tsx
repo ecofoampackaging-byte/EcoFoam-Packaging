@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { companyContact } from "@/data/company";
 import { Mail, PhoneCall, MapPin, Code } from "lucide-react";
 
@@ -16,14 +17,18 @@ export default function Footer({ onOpenQuote, onOpenSample }: FooterProps) {
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-[#E5DCCB]">
           {/* Brand Column */}
-          <div className="md:col-span-5 space-y-4">
-            <Link href="/" className="inline-block">
-              <span className="font-serif text-2xl font-normal tracking-tight text-[#121212]">
-                EcoFoam Packaging Solutions
-              </span>
+          <div className="md:col-span-5 space-y-5">
+            <Link href="/" className="inline-block group">
+              <Image
+                src="/images/logo.png"
+                alt="EcoForm Packaging"
+                width={260}
+                height={95}
+                className="h-20 sm:h-22 w-auto object-contain group-hover:opacity-90 transition-opacity"
+              />
             </Link>
             <p className="text-neutral-700 text-xs sm:text-sm font-sans leading-relaxed max-w-md font-light">
-              Providing minimalist, high-end plastic & acrylic packaging solutions that embody
+              Providing minimalist, high-end packaging solutions that embody
               transparency, purity, and structural integrity.
             </p>
 
@@ -76,7 +81,7 @@ export default function Footer({ onOpenQuote, onOpenSample }: FooterProps) {
             <div className="pt-2 flex flex-wrap items-center gap-2.5">
               <div className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-[#F4ECE1] border border-[#DECDB8] rounded-sm text-xs text-neutral-800">
                 <span className="font-medium text-[#121212]">
-                  © {new Date().getFullYear()} EcoFoam Packaging. Copyright issued by EcoFoam Packaging.
+                  © {new Date().getFullYear()} EcoForm Packaging. Copyright issued by EcoForm Packaging.
                 </span>
               </div>
               <div className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-white/90 border border-[#DECDB8] rounded-sm text-xs text-neutral-800 shadow-xs">

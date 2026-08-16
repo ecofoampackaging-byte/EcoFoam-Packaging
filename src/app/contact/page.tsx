@@ -50,10 +50,10 @@ export default function ContactPage() {
               OFFICIAL CONTACT & HEADQUARTERS
             </span>
             <h1 className="font-serif text-4xl sm:text-5xl font-normal text-[#121212] tracking-tight">
-              Connect with EcoFoam Packaging.
+              Connect with EcoForm Packaging.
             </h1>
-            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-sans font-light">
-              Reach out directly to our packaging specialists for structural designs, custom bulk pricing, or evaluation sample kits.
+            <p className="text-xs sm:text-sm text-neutral-600 font-sans leading-relaxed max-w-xl mx-auto font-light">
+              Speak directly with our technical packaging engineers to discuss custom tooling, bulk spot delivery, or sample kit dispatches.
             </p>
           </div>
 
@@ -254,59 +254,53 @@ export default function ContactPage() {
                     Inquiry Received
                   </h3>
                   <p className="text-xs text-neutral-600 max-w-md mx-auto leading-relaxed">
-                    Thank you, <span className="font-bold text-neutral-900">{form.fullName}</span>. Your requirements have been submitted to EcoFoam Packaging. We will contact <span className="font-bold text-neutral-900">{form.email}</span> within 4 business hours. You can also reach us directly at <a href={`mailto:${companyContact.email}`} className="font-bold underline text-[#121212]">{companyContact.email}</a>.
+                    Thank you, <span className="font-bold text-neutral-900">{form.fullName}</span>. Your requirements have been submitted to EcoForm Packaging. We will contact <span className="font-bold text-neutral-900">{form.email}</span> within 4 business hours. You can also reach us directly at <a href={`mailto:${companyContact.email}`} className="font-bold underline text-[#121212]">{companyContact.email}</a>.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="mt-4 px-6 py-2.5 bg-[#121212] text-white text-xs font-medium uppercase tracking-wider rounded-sm"
+                    className="mt-6 px-6 py-2.5 bg-[#121212] text-white text-xs tracking-wider uppercase font-semibold rounded-sm"
                   >
-                    Send Another Inquiry
+                    Submit Another Inquiry
                   </button>
                 </div>
               )}
             </div>
 
-            {/* Right Column: Address Details & Google Maps Embed */}
+            {/* Right Column: Corporate Headquarters Details with Interactive Google Map */}
             <div className="lg:col-span-5 space-y-6">
+              {/* Plant / HQ Card */}
               <div className="bg-white p-8 rounded-sm border border-neutral-200/80 shadow-xs space-y-6">
-                <div className="flex items-center justify-between border-b border-neutral-100 pb-4">
-                  <h3 className="font-serif text-2xl text-[#121212] font-normal">
-                    Headquarters Address
-                  </h3>
-                  <span className="text-[9px] uppercase font-bold tracking-wider bg-[#121212] text-white px-2.5 py-1 rounded-xs">
-                    INDIA HQ
+                <div>
+                  <span className="text-[10px] tracking-[0.2em] uppercase font-bold text-[#C5A059] block mb-1">
+                    PRIMARY MANUFACTURING & HQ
                   </span>
+                  <h3 className="font-serif text-2xl text-[#121212] font-normal">
+                    EcoForm Packaging Solutions
+                  </h3>
                 </div>
 
-                <div className="space-y-3">
-                  <div className="flex items-start space-x-3">
-                    <MapPin className="w-4 h-4 text-[#C5A059] flex-shrink-0 mt-1" />
+                <div className="space-y-4 text-xs font-sans">
+                  <div className="flex items-start space-x-3 text-neutral-700">
+                    <MapPin className="w-4 h-4 text-neutral-800 shrink-0 mt-0.5" />
                     <div>
-                      <p className="text-xs font-bold text-neutral-900">
-                        EcoFoam Packaging Solutions
-                      </p>
-                      <p className="text-xs text-neutral-600 mt-1 leading-relaxed">
-                        {companyContact.address}
-                      </p>
-                      <div className="mt-2 inline-flex items-center space-x-2 text-[10px] bg-neutral-100 px-2.5 py-1 rounded text-neutral-700 font-mono">
-                        <span>Plus Code:</span>
-                        <span className="font-bold text-[#121212]">{companyContact.plusCode}</span>
-                      </div>
+                      <p className="font-bold text-neutral-900">Registered Plant Address:</p>
+                      <p className="text-neutral-600 leading-relaxed">{companyContact.address}</p>
                     </div>
                   </div>
                 </div>
 
-                {/* Google Map Embed Container */}
-                <div className="w-full h-64 rounded-sm overflow-hidden border border-neutral-200 relative bg-neutral-100">
+                {/* Google Maps Embed iframe with live pinpoint of Sector 44 Noida / Chhalera */}
+                <div className="relative w-full h-[280px] rounded-sm overflow-hidden border border-neutral-200 shadow-inner">
                   <iframe
-                    title="EcoFoam Packaging Location Map"
-                    src={companyContact.googleMapsEmbed}
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14018.123456789!2d77.3400!3d28.5500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5a5a5a5a5a5%3A0x123456789abcdef!2sSector%2044%2C%20Noida%2C%20Uttar%20Pradesh%20201303!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     allowFullScreen={false}
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
+                    title="EcoForm Packaging Location Map"
+                    className="w-full h-full grayscale-[20%] contrast-[1.05]"
                   />
                 </div>
 

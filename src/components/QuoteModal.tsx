@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { X, CheckCircle, Calculator, Send } from "lucide-react";
 
 interface QuoteModalProps {
@@ -20,6 +21,12 @@ export default function QuoteModal({
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", company: "", notes: "" });
 
+  useEffect(() => {
+    if (preselectedProduct) {
+      setFoamType(preselectedProduct);
+    }
+  }, [preselectedProduct]);
+
   if (!isOpen) return null;
 
   const getEstimatedUnitCost = () => {
@@ -38,15 +45,25 @@ export default function QuoteModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
       <div className="bg-white max-w-xl w-full rounded-sm shadow-2xl overflow-hidden border border-neutral-200">
-        {/* Header matching exact dark charcoal theme */}
-        <div className="bg-[#14181B] text-white px-6 sm:px-8 py-6 flex items-start justify-between">
-          <div className="space-y-1">
-            <span className="text-[10px] tracking-[0.2em] uppercase text-neutral-400 block font-sans font-bold">
-              INSTANT B2B QUOTATION
-            </span>
-            <h3 className="font-serif text-2xl sm:text-3xl font-normal tracking-tight text-white">
-              Request EcoFoam Production Quote
-            </h3>
+        {/* Header matching dark theme with official logo */}
+        <div className="bg-[#14181B] text-white px-6 sm:px-8 py-5 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="relative w-9 h-9 shrink-0">
+              <Image
+                src="/images/logo-mark.png"
+                alt="EcoForm Packaging"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div>
+              <span className="text-[9px] tracking-[0.2em] uppercase text-neutral-400 block font-sans font-bold">
+                INSTANT B2B QUOTATION
+              </span>
+              <h3 className="font-serif text-xl sm:text-2xl font-normal tracking-tight text-white">
+                Request EcoForm Production Quote
+              </h3>
+            </div>
           </div>
           <button
             onClick={onClose}
@@ -61,7 +78,7 @@ export default function QuoteModal({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-2">
-                  EcoFoam Category
+                  EcoForm Category
                 </label>
                 <select
                   value={foamType}
@@ -178,7 +195,7 @@ export default function QuoteModal({
               Quotation Request Received
             </h4>
             <p className="text-xs text-neutral-600 max-w-md mx-auto leading-relaxed">
-              Thank you, <span className="font-bold text-neutral-900">{form.name}</span>. An EcoFoam Packaging account manager will review your specifications for <span className="font-bold">{foamType}</span> and contact <span className="font-bold">{form.email}</span> within 4 business hours.
+              Thank you, <span className="font-bold text-neutral-900">{form.name}</span>. An EcoForm Packaging account manager will review your specifications for <span className="font-bold">{foamType}</span> and contact <span className="font-bold">{form.email}</span> within 4 business hours.
             </p>
             <button
               onClick={() => {

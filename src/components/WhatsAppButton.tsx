@@ -31,7 +31,7 @@ export default function WhatsAppButton() {
   };
 
   const whatsappUrl = `https://wa.me/91${companyContact.rawPhone}?text=${encodeURIComponent(
-    "Hello EcoFoam Packaging, I am interested in your products and solutions."
+    "Hello EcoForm Packaging, I am interested in your products and solutions."
   )}`;
 
   return (

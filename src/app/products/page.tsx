@@ -81,8 +81,8 @@ export default function ProductsPage() {
           {/* Product Page Hero */}
           <section className="relative w-full h-[380px] sm:h-[440px] flex items-center justify-center overflow-hidden bg-[#5E8E87]">
             <Image
-              src="/images/clear-nutra.png"
-              alt="EcoFoam Premium Plastic & Acrylic Solutions"
+              src="/images/client-teal-nmn.png"
+              alt="EcoForm Premium Bottles"
               fill
               priority
               className="object-cover filter brightness-[0.92] contrast-[1.05]"
@@ -114,7 +114,7 @@ export default function ProductsPage() {
                   <h4 className="font-sans font-semibold text-xs text-neutral-900 mb-2">
                     Material
                   </h4>
-                  {["Bio-PET Plastic", "Acrylic Bottles", "High-Clarity Glass", "Recycled Eco-Glass", "Textured Glass"].map((mat) => (
+                  {["High-Clarity Glass", "Acrylic Bottles", "Pharma Grade Glass"].map((mat) => (
                     <label
                       key={mat}
                       className="flex items-center space-x-2.5 text-xs text-neutral-600 hover:text-neutral-900 cursor-pointer"
@@ -134,7 +134,7 @@ export default function ProductsPage() {
                   <h4 className="font-sans font-semibold text-xs text-neutral-900 mb-2">
                     Finish
                   </h4>
-                  {["Matte Smooth", "Frosted Finish", "Clear Gloss"].map((fin) => (
+                  {["Frosted Finish", "Clear Gloss", "Matte Smooth"].map((fin) => (
                     <label
                       key={fin}
                       className="flex items-center space-x-2.5 text-xs text-neutral-600 hover:text-neutral-900 cursor-pointer"
@@ -154,7 +154,7 @@ export default function ProductsPage() {
                   <h4 className="font-sans font-semibold text-xs text-neutral-900 mb-2">
                     Color
                   </h4>
-                  {["Opaque White / Amber", "Amber Glass", "Flint (Clear)", "Clear / Green / Amber"].map((col) => (
+                  {["Flint (Clear)", "Amber Glass", "Opaque White / Amber"].map((col) => (
                     <label
                       key={col}
                       className="flex items-center space-x-2.5 text-xs text-neutral-600 hover:text-neutral-900 cursor-pointer"

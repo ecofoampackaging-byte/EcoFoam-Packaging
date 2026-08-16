@@ -2,21 +2,21 @@ import { CompanyPillar, CompanyStat, GlobalHub, SampleKitBox } from "@/types";
 
 export const sampleBoxes: SampleKitBox[] = [
   {
-    id: "ecofoam-box",
-    name: "EcoFoam Starter Evaluation Kit",
-    items: "5x Molded Bio-Foam Inserts + 4x Plant-Starch Corner Protectors",
+    id: "ecoform-box",
+    name: "EcoForm Starter Bottle Evaluation Kit",
+    items: "5x Frosted & Clear Health Bottles + Gold & Silver Cap Samples",
     tag: "MOST POPULAR",
   },
   {
-    id: "thermal-box",
-    name: "Bio-Thermal Cold Chain Kit",
-    items: "2x Eco Thermal Cooler Inserts + Temperature Data Sheet",
-    tag: "HIGH INSULATION",
+    id: "amber-box",
+    name: "Amber Pharma UV Protection Kit",
+    items: "3x Amber Medicine Bottles + Droppers & Continuous Thread Caps",
+    tag: "PHARMA GRADE",
   },
   {
     id: "enterprise-box",
-    name: "Full EcoFoam Material Swatch Box",
-    items: "Complete line of bio-foam density blocks & compostability certification",
+    name: "Full EcoForm Material Swatch Box",
+    items: "Complete line of frosted, amber, clear & matte black bottles with full cap swatch set",
     tag: "ENTERPRISE",
   },
 ];
@@ -30,24 +30,24 @@ export const companyStats: CompanyStat[] = [
 
 export const companyPillars: CompanyPillar[] = [
   {
-    title: "Type I Borosilicate Clarity",
+    title: "High-Grade PMMA Acrylic Molding",
     description:
-      "Engineered for maximum thermal shock resistance and near-zero chemical leeching, protecting volatile pharmaceutical and cosmetic compounds.",
+      "Advanced injection-blow molding delivering crystal-clear transparency with heavy-base shatterproof durability for luxury formulations.",
   },
   {
     title: "99.8% UV Light Protection",
     description:
-      "High-density amber formulation specifically calibrated to block light spectrum wavelengths between 290nm and 450nm.",
+      "High-density amber and opaque matte barriers specifically calibrated to block harmful light wavelengths between 290nm and 450nm.",
   },
   {
-    title: "100% Recyclable Bio-PET & Acrylic",
+    title: "Precision Double-Wall Engineering",
     description:
-      "Eco-friendly recyclable plastic & acrylic polymer bottles crafted to minimize global carbon footprint.",
+      "Engineered multi-layer acrylic structures with airless dispensing mechanisms to isolate active serums from oxygen and oxidation.",
   },
   {
     title: "360° Laser Optical Quality Control",
     description:
-      "Every single vial undergoes high-speed optical camera checks verifying wall thickness, neck thread precision, and lip seal uniformity.",
+      "Every bottle undergoes high-speed optical inspection verifying wall thickness, continuous thread precision, and airtight sealing.",
   },
 ];
 
