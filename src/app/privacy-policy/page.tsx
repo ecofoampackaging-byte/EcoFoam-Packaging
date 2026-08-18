@@ -23,6 +23,8 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import { motion } from "framer-motion";
+
 export default function PrivacyPolicyPage() {
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [sampleOpen, setSampleOpen] = useState(false);
@@ -38,7 +40,11 @@ export default function PrivacyPolicyPage() {
       <PageTransition>
         <main className="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-8 lg:px-12 py-10 lg:py-16 space-y-8">
           {/* Top Breadcrumb */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+          >
             <Link
               href="/"
               className="inline-flex items-center text-xs text-neutral-500 hover:text-[#121212] transition-colors group"
@@ -46,10 +52,17 @@ export default function PrivacyPolicyPage() {
               <ArrowLeft className="w-3.5 h-3.5 mr-1.5 group-hover:-translate-x-1 transition-transform" />
               <span>Back to Home</span>
             </Link>
-          </div>
+          </motion.div>
 
-          {/* Header Banner - Rich Cream Styling */}
-          <div className="bg-[#FAF4EA] p-8 sm:p-12 rounded-sm border border-[#E5DCCB] space-y-4 relative overflow-hidden shadow-xs">
+          {/* Header Banner - Rich Cream Styling with smooth reveal */}
+          <motion.div
+            initial={{ opacity: 0, y: 25, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="bg-[#FAF4EA] p-8 sm:p-12 rounded-sm border border-[#E5DCCB] space-y-4 relative overflow-hidden shadow-md"
+          >
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#C5A059] via-[#121212] to-[#C5A059]" />
+
             <div className="flex items-center space-x-2 text-[10px] font-bold tracking-[0.25em] text-[#967C2F] uppercase">
               <ShieldCheck className="w-4 h-4 text-[#967C2F]" />
               <span>LEGAL & DATA GOVERNANCE</span>
@@ -65,7 +78,7 @@ export default function PrivacyPolicyPage() {
               <span className="pt-2">•</span>
               <span className="pt-2">Last Updated: {new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" })}</span>
             </div>
-          </div>
+          </motion.div>
 
           {/* Key Ownership & Development Highlights Banner */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

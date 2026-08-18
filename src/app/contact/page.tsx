@@ -7,7 +7,8 @@ import Footer from "@/components/Footer";
 import QuoteModal from "@/components/QuoteModal";
 import SampleModal from "@/components/SampleModal";
 import PageTransition from "@/components/PageTransition";
-import { CheckCircle, MapPin, PhoneCall, Mail, ExternalLink, Copy, Check } from "lucide-react";
+import { CheckCircle, MapPin, PhoneCall, Mail, ExternalLink, Copy, Check, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 import { companyContact } from "@/data/company";
 
 export default function ContactPage() {
@@ -43,118 +44,175 @@ export default function ContactPage() {
       />
 
       <PageTransition>
-        <main className="flex-grow max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16 space-y-12">
-          {/* Page Hero Header */}
-          <div className="max-w-3xl space-y-4">
-            <span className="text-[10px] tracking-[0.25em] uppercase font-bold text-[#C5A059] block">
-              OFFICIAL CONTACT & HEADQUARTERS
-            </span>
-            <h1 className="font-serif text-4xl sm:text-5xl font-normal text-[#121212] tracking-tight">
-              Connect with EcoForm Packaging.
-            </h1>
-            <p className="text-xs sm:text-sm text-neutral-600 font-sans leading-relaxed max-w-xl mx-auto font-light">
-              Speak directly with our technical packaging engineers to discuss custom tooling, bulk spot delivery, or sample kit dispatches.
-            </p>
-          </div>
+        <main className="flex-grow flex flex-col">
+          {/* Hero Banner Section matching Homepage Hero */}
+          <section className="relative w-full min-h-[380px] sm:min-h-[440px] flex items-center justify-center overflow-hidden bg-[#EBE7DF]">
+            <motion.div
+              className="absolute inset-0 z-0"
+              initial={{ scale: 1.06, opacity: 0.9 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+            >
+              <Image
+                src="/images/ecofoam-hero-pharma.jpg"
+                alt="EcoFoam Packaging Contact & Production"
+                fill
+                priority
+                className="object-cover object-center filter brightness-[0.96] contrast-[1.02]"
+              />
+              <div className="absolute inset-0 bg-black/35" />
+            </motion.div>
 
-          {/* Quick Contact Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Phone Card */}
-            <div className="bg-white p-6 rounded-sm border border-neutral-200 shadow-xs space-y-4 hover:border-[#121212] transition-colors">
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-full bg-[#121212] text-white flex items-center justify-center">
-                  <PhoneCall className="w-4 h-4" />
-                </div>
-                <button
-                  onClick={() => handleCopy(companyContact.rawPhone, "phone")}
-                  className="text-neutral-400 hover:text-neutral-900 text-xs flex items-center space-x-1"
-                  title="Copy Phone Number"
-                >
-                  {copied === "phone" ? (
-                    <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  ) : (
-                    <Copy className="w-3.5 h-3.5" />
-                  )}
-                </button>
-              </div>
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
-                  Direct Phone Support
-                </p>
-                <a
-                  href={`tel:${companyContact.rawPhone}`}
-                  className="text-lg font-bold text-[#121212] hover:underline block pt-1"
-                >
-                  {companyContact.phone}
-                </a>
-                <p className="text-xs text-neutral-500 pt-1">
-                  Mon - Sat, 9:00 AM - 7:00 PM IST
-                </p>
-              </div>
-            </div>
+            <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 w-full py-12">
+              <motion.div
+                initial={{ opacity: 0, y: 30, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+                className="max-w-2xl bg-white/95 backdrop-blur-md p-8 sm:p-10 shadow-2xl border border-white/60 rounded-sm relative overflow-hidden"
+              >
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#C5A059] via-[#121212] to-[#C5A059]" />
 
-            {/* Email Card */}
-            <div className="bg-white p-6 rounded-sm border border-neutral-200 shadow-xs space-y-4 hover:border-[#121212] transition-colors">
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-full bg-[#121212] text-white flex items-center justify-center">
-                  <Mail className="w-4 h-4" />
-                </div>
-                <button
-                  onClick={() => handleCopy(companyContact.email, "email")}
-                  className="text-neutral-400 hover:text-neutral-900 text-xs flex items-center space-x-1"
-                  title="Copy Email Address"
+                <motion.div
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="inline-flex items-center space-x-1.5 px-3 py-1 bg-[#F5F3EF] border border-[#E5DCCB] rounded-full mb-3 text-[10px] font-bold tracking-[0.2em] uppercase text-[#967C2F]"
                 >
-                  {copied === "email" ? (
-                    <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  ) : (
-                    <Copy className="w-3.5 h-3.5" />
-                  )}
-                </button>
-              </div>
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
-                  Official Email Address
-                </p>
-                <a
-                  href={`mailto:${companyContact.email}`}
-                  className="text-base font-bold text-[#121212] hover:underline block pt-1 break-all"
-                >
-                  {companyContact.email}
-                </a>
-                <p className="text-xs text-neutral-500 pt-1">
-                  Guaranteed response within 4 hours
-                </p>
-              </div>
-            </div>
+                  <Sparkles className="w-3 h-3 text-[#C5A059]" />
+                  <span>OFFICIAL HEADQUARTERS & DIRECT INQUIRY</span>
+                </motion.div>
 
-            {/* Address Card */}
-            <div className="bg-white p-6 rounded-sm border border-neutral-200 shadow-xs space-y-4 hover:border-[#121212] transition-colors">
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 rounded-full bg-[#121212] text-white flex items-center justify-center">
-                  <MapPin className="w-4 h-4" />
-                </div>
-                <a
-                  href={companyContact.googleMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-neutral-400 hover:text-[#121212] text-xs flex items-center space-x-1"
+                <motion.h1
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="font-serif text-3xl sm:text-4xl text-[#121212] tracking-tight font-normal mb-3"
                 >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
-                  Office Location
-                </p>
-                <p className="text-xs font-semibold text-[#121212] pt-1 leading-snug">
-                  {companyContact.locality}, {companyContact.city}
-                </p>
-                <p className="text-xs text-neutral-500 pt-1">
-                  {companyContact.state} {companyContact.pincode}, India
-                </p>
-              </div>
+                  Connect with EcoForm Packaging.
+                </motion.h1>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  className="text-neutral-600 text-xs sm:text-sm font-sans leading-relaxed font-light"
+                >
+                  Speak directly with our technical packaging engineers to discuss custom tooling, bulk spot delivery, or sample kit dispatches.
+                </motion.p>
+              </motion.div>
             </div>
-          </div>
+          </section>
+
+          {/* Main Content Grid */}
+          <div className="max-w-[1600px] w-full mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-14 space-y-12">
+            {/* Quick Contact Cards with Framer Motion hover */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Phone Card */}
+              <motion.div
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.25 }}
+                className="bg-white p-6 sm:p-7 rounded-sm border border-neutral-200 shadow-xs hover:shadow-xl space-y-4 hover:border-[#121212] transition-all"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="w-10 h-10 rounded-sm bg-[#121212] text-white flex items-center justify-center">
+                    <PhoneCall className="w-4 h-4 text-[#C5A059]" />
+                  </div>
+                  <button
+                    onClick={() => handleCopy(companyContact.rawPhone, "phone")}
+                    className="text-neutral-400 hover:text-neutral-900 text-xs flex items-center space-x-1 cursor-pointer"
+                    title="Copy Phone Number"
+                  >
+                    {copied === "phone" ? (
+                      <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    ) : (
+                      <Copy className="w-3.5 h-3.5" />
+                    )}
+                  </button>
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
+                    Direct Phone Support
+                  </p>
+                  <a
+                    href={`tel:${companyContact.rawPhone}`}
+                    className="text-base sm:text-lg font-bold text-[#121212] hover:underline block pt-1"
+                  >
+                    {companyContact.phone}
+                  </a>
+                  <p className="text-xs text-neutral-500 pt-1 font-light">
+                    Mon - Sat, 9:00 AM - 7:00 PM IST
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Email Card */}
+              <motion.div
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.25 }}
+                className="bg-white p-6 sm:p-7 rounded-sm border border-neutral-200 shadow-xs hover:shadow-xl space-y-4 hover:border-[#121212] transition-all"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="w-10 h-10 rounded-sm bg-[#121212] text-white flex items-center justify-center">
+                    <Mail className="w-4 h-4 text-[#C5A059]" />
+                  </div>
+                  <button
+                    onClick={() => handleCopy(companyContact.email, "email")}
+                    className="text-neutral-400 hover:text-neutral-900 text-xs flex items-center space-x-1 cursor-pointer"
+                    title="Copy Email Address"
+                  >
+                    {copied === "email" ? (
+                      <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    ) : (
+                      <Copy className="w-3.5 h-3.5" />
+                    )}
+                  </button>
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
+                    Email Inquiries
+                  </p>
+                  <a
+                    href={`mailto:${companyContact.email}`}
+                    className="text-base sm:text-lg font-bold text-[#121212] hover:underline block pt-1"
+                  >
+                    {companyContact.email}
+                  </a>
+                  <p className="text-xs text-neutral-500 pt-1 font-light">
+                    Guaranteed response within 4 hours
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Address Card */}
+              <motion.div
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.25 }}
+                className="bg-white p-6 sm:p-7 rounded-sm border border-neutral-200 shadow-xs hover:shadow-xl space-y-4 hover:border-[#121212] transition-all"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="w-10 h-10 rounded-sm bg-[#121212] text-white flex items-center justify-center">
+                    <MapPin className="w-4 h-4 text-[#C5A059]" />
+                  </div>
+                  <a
+                    href={companyContact.googleMapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-neutral-400 hover:text-neutral-900 text-xs flex items-center space-x-1"
+                    title="Open in Google Maps"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
+                    Manufacturing Facility
+                  </p>
+                  <p className="text-xs text-neutral-800 pt-1 leading-relaxed font-light">
+                    {companyContact.address}
+                  </p>
+                </div>
+              </motion.div>
+            </div>
 
           {/* 2 Column Main Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
@@ -325,8 +383,9 @@ export default function ContactPage() {
               </div>
             </div>
           </div>
-        </main>
-      </PageTransition>
+        </div>
+      </main>
+    </PageTransition>
 
       <Footer
         onOpenQuote={() => setQuoteOpen(true)}

@@ -79,25 +79,59 @@ export default function ProductsPage() {
 
       <PageTransition>
         <main className="flex-grow">
-          {/* Product Page Hero */}
-          <section className="relative w-full h-[380px] sm:h-[440px] flex items-center justify-center overflow-hidden bg-[#5E8E87]">
-            <Image
-              src="/images/ecofoam-nutra-hero.jpg"
-              alt="EcoFoam Medicine & Pharmaceutical Bottle Solutions"
-              fill
-              priority
-              className="object-cover filter brightness-[0.92] contrast-[1.05]"
-            />
-            <div className="absolute inset-0 bg-black/20" />
+          {/* Product Page Hero Banner with smooth entrance */}
+          <section className="relative w-full h-[380px] sm:h-[460px] flex items-center justify-center overflow-hidden bg-[#5E8E87]">
+            <motion.div
+              className="absolute inset-0 z-0"
+              initial={{ scale: 1.06, opacity: 0.9 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+            >
+              <Image
+                src="/images/ecofoam-nutra-hero.jpg"
+                alt="EcoFoam Medicine & Pharmaceutical Bottle Solutions"
+                fill
+                priority
+                className="object-cover filter brightness-[0.92] contrast-[1.05]"
+              />
+              <div className="absolute inset-0 bg-black/25" />
+            </motion.div>
 
-            <div className="relative z-10 max-w-2xl mx-auto px-6 py-10 bg-white/90 backdrop-blur-md text-center shadow-lg border border-white/40">
-              <h1 className="font-serif text-3xl sm:text-4xl text-[#121212] tracking-tight font-normal mb-3">
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+              className="relative z-10 max-w-2xl mx-auto px-8 py-10 sm:py-12 bg-white/95 backdrop-blur-md text-center shadow-2xl border border-white/60 rounded-sm relative overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#C5A059] via-[#121212] to-[#C5A059]" />
+
+              <motion.span
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="text-[10px] tracking-[0.25em] uppercase font-bold text-[#C5A059] block mb-2"
+              >
+                OFFICIAL CATALOG & DIRECT ORDER
+              </motion.span>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="font-serif text-3xl sm:text-4xl text-[#121212] tracking-tight font-normal mb-3"
+              >
                 MEDICINE & PHARMACEUTICAL BOTTLES
-              </h1>
-              <p className="text-neutral-700 text-xs sm:text-sm font-sans font-light leading-relaxed max-w-md mx-auto">
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="text-neutral-700 text-xs sm:text-sm font-sans font-light leading-relaxed max-w-md mx-auto"
+              >
                 Precision-engineered pharmaceutical, medicine, capsule, and nutraceutical bottles. Certified medical-grade collection designed for maximum formula stability.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
           </section>
 
           {/* Content Section */}
