@@ -10,7 +10,7 @@ import ProductDetailModal from "@/components/ProductDetailModal";
 import PageTransition from "@/components/PageTransition";
 import { CatalogProduct, ProductItem } from "@/types";
 import { fullProductCatalog } from "@/data/products";
-import { ArrowRight, Eye, Sparkles } from "lucide-react";
+import { ArrowRight, Eye, Sparkles, Search, X, Check, SlidersHorizontal, ChevronDown, RotateCcw, Filter } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function ProductsPage() {
@@ -19,11 +19,14 @@ export default function ProductsPage() {
   const [detailProduct, setDetailProduct] = useState<ProductItem | null>(null);
   const [selectedProductTitle, setSelectedProductTitle] = useState<string | undefined>(undefined);
 
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
   const [selectedFinishes, setSelectedFinishes] = useState<string[]>([]);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
+  const [selectedCapacity, setSelectedCapacity] = useState<string>("All");
   const [sortBy, setSortBy] = useState("Recommended");
   const [currentPage, setCurrentPage] = useState(1);
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const itemsPerPage = 6;
 
   const toggleFilter = (
@@ -37,26 +40,70 @@ export default function ProductsPage() {
   };
 
   const clearAllFilters = () => {
+    setSearchQuery("");
     setSelectedMaterials([]);
     setSelectedFinishes([]);
     setSelectedColors([]);
+    setSelectedCapacity("All");
     setCurrentPage(1);
   };
 
+  const activeFiltersCount =
+    (searchQuery ? 1 : 0) +
+    selectedMaterials.length +
+    selectedFinishes.length +
+    selectedColors.length +
+    (selectedCapacity !== "All" ? 1 : 0);
+
+  // Available capacities from products
+  const capacities = ["All", "50ml", "100ml", "120ml", "150ml", "200ml", "250ml"];
+
+  // Filtered Products
   const filteredProducts = useMemo(() => {
     return fullProductCatalog.filter((item) => {
+      // Search Query
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        const matches =
+          item.title.toLowerCase().includes(q) ||
+          item.description.toLowerCase().includes(q) ||
+          item.category.toLowerCase().includes(q) ||
+          item.subtext.toLowerCase().includes(q) ||
+          item.material.toLowerCase().includes(q) ||
+          item.specs.capacity.toLowerCase().includes(q);
+        if (!matches) return false;
+      }
+
+      // Material
       if (selectedMaterials.length && !selectedMaterials.includes(item.material)) {
         return false;
       }
+
+      // Finish
       if (selectedFinishes.length && !selectedFinishes.includes(item.finish)) {
         return false;
       }
+
+      // Color
       if (selectedColors.length && !selectedColors.includes(item.color)) {
         return false;
       }
+
+      // Capacity
+      if (selectedCapacity !== "All") {
+        if (!item.specs.capacity.toLowerCase().includes(selectedCapacity.toLowerCase())) {
+          return false;
+        }
+      }
+
       return true;
     });
-  }, [selectedMaterials, selectedFinishes, selectedColors]);
+  }, [searchQuery, selectedMaterials, selectedFinishes, selectedColors, selectedCapacity]);
+
+  // Counts helper
+  const getCount = (key: "material" | "finish" | "color", val: string) => {
+    return fullProductCatalog.filter((item) => item[key] === val).length;
+  };
 
   const sortedProducts = useMemo(() => {
     const list = [...filteredProducts];
@@ -153,81 +200,310 @@ export default function ProductsPage() {
           </section>
 
           {/* Content Section */}
-          <section className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-14">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-              {/* Left Sidebar */}
-              <aside className="lg:col-span-3 space-y-8 pr-4 border-r border-neutral-200/80">
-                <div>
-                  <h3 className="font-sans font-bold text-xs tracking-[0.15em] text-[#121212] uppercase mb-6">
-                    REFINE SELECTION
-                  </h3>
-                </div>
+          <section className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-12 lg:py-16">
+            {/* Mobile Filter Toggle Button */}
+            <div className="lg:hidden mb-6 flex items-center justify-between bg-white p-4 rounded-lg border border-neutral-200 shadow-xs">
+              <button
+                onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
+                className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-neutral-900"
+              >
+                <Filter className="w-4 h-4 text-[#C5A059]" />
+                <span>Filters & Search</span>
+                {activeFiltersCount > 0 && (
+                  <span className="w-5 h-5 rounded-full bg-[#121212] text-white text-[10px] flex items-center justify-center">
+                    {activeFiltersCount}
+                  </span>
+                )}
+              </button>
 
-                <div className="space-y-3">
-                  <h4 className="font-sans font-semibold text-xs text-neutral-900 mb-2">
-                    Material
-                  </h4>
-                  {["High-Clarity Glass", "Acrylic Bottles", "Pharma Grade Glass"].map((mat) => (
-                    <label
-                      key={mat}
-                      className="flex items-center space-x-2.5 text-xs text-neutral-600 hover:text-neutral-900 cursor-pointer"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={selectedMaterials.includes(mat)}
-                        onChange={() => toggleFilter(mat, setSelectedMaterials)}
-                        className="w-3.5 h-3.5 rounded-xs accent-[#121212] border-neutral-300"
-                      />
-                      <span>{mat}</span>
-                    </label>
-                  ))}
-                </div>
+              {activeFiltersCount > 0 && (
+                <button
+                  onClick={clearAllFilters}
+                  className="text-xs font-semibold text-[#967C2F] hover:underline"
+                >
+                  Reset All
+                </button>
+              )}
+            </div>
 
-                <div className="space-y-3 pt-2">
-                  <h4 className="font-sans font-semibold text-xs text-neutral-900 mb-2">
-                    Finish
-                  </h4>
-                  {["Frosted Finish", "Clear Gloss", "Matte Smooth"].map((fin) => (
-                    <label
-                      key={fin}
-                      className="flex items-center space-x-2.5 text-xs text-neutral-600 hover:text-neutral-900 cursor-pointer"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={selectedFinishes.includes(fin)}
-                        onChange={() => toggleFilter(fin, setSelectedFinishes)}
-                        className="w-3.5 h-3.5 rounded-xs accent-[#121212] border-neutral-300"
-                      />
-                      <span>{fin}</span>
-                    </label>
-                  ))}
-                </div>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+              {/* Modern Refine Selection Sidebar */}
+              <aside
+                className={`lg:col-span-3 space-y-6 ${
+                  mobileFiltersOpen ? "block" : "hidden lg:block"
+                } lg:sticky lg:top-28 transition-all`}
+              >
+                <div className="bg-white p-6 sm:p-7 rounded-xl border border-neutral-200/90 shadow-xs space-y-6">
+                  {/* Sidebar Header with Active Counter & Reset */}
+                  <div className="flex items-center justify-between pb-4 border-b border-neutral-100">
+                    <div className="flex items-center gap-2">
+                      <SlidersHorizontal className="w-4 h-4 text-[#C5A059]" />
+                      <h3 className="font-sans font-bold text-xs tracking-[0.18em] text-[#121212] uppercase">
+                        REFINE SELECTION
+                      </h3>
+                      {activeFiltersCount > 0 && (
+                        <span className="px-2 py-0.5 rounded-full bg-[#121212] text-white text-[10px] font-bold">
+                          {activeFiltersCount}
+                        </span>
+                      )}
+                    </div>
 
-                <div className="space-y-3 pt-2">
-                  <h4 className="font-sans font-semibold text-xs text-neutral-900 mb-2">
-                    Color
-                  </h4>
-                  {["Flint (Clear)", "Amber Glass", "Opaque White / Amber"].map((col) => (
-                    <label
-                      key={col}
-                      className="flex items-center space-x-2.5 text-xs text-neutral-600 hover:text-neutral-900 cursor-pointer"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={selectedColors.includes(col)}
-                        onChange={() => toggleFilter(col, setSelectedColors)}
-                        className="w-3.5 h-3.5 rounded-xs accent-[#121212] border-neutral-300"
-                      />
-                      <span>{col}</span>
+                    {activeFiltersCount > 0 && (
+                      <button
+                        onClick={clearAllFilters}
+                        className="text-[11px] font-semibold text-[#967C2F] hover:text-[#121212] flex items-center gap-1 transition-colors cursor-pointer"
+                      >
+                        <RotateCcw className="w-3 h-3" />
+                        <span>Reset</span>
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Realtime Search Input */}
+                  <div className="relative">
+                    <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => {
+                        setSearchQuery(e.target.value);
+                        setCurrentPage(1);
+                      }}
+                      placeholder="Search bottles, capacity..."
+                      className="w-full pl-9 pr-8 py-2.5 bg-neutral-50 border border-neutral-200 rounded-lg text-xs placeholder:text-neutral-400 focus:outline-none focus:border-[#121212] focus:bg-white transition-all"
+                    />
+                    {searchQuery && (
+                      <button
+                        onClick={() => setSearchQuery("")}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-800 cursor-pointer"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Volume / Capacity Filter Chips */}
+                  <div className="space-y-2.5">
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-neutral-900">
+                      Volume / Capacity
                     </label>
-                  ))}
+                    <div className="flex flex-wrap gap-1.5">
+                      {capacities.map((cap) => (
+                        <button
+                          key={cap}
+                          onClick={() => {
+                            setSelectedCapacity(cap);
+                            setCurrentPage(1);
+                          }}
+                          className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all cursor-pointer ${
+                            selectedCapacity === cap
+                              ? "bg-[#121212] text-white shadow-xs font-semibold"
+                              : "bg-neutral-100/80 text-neutral-700 hover:bg-neutral-200/80"
+                          }`}
+                        >
+                          {cap}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Material Filter with Custom Checkboxes & Counts */}
+                  <div className="space-y-3 pt-3 border-t border-neutral-100">
+                    <h4 className="font-sans font-bold text-[11px] uppercase tracking-wider text-neutral-900">
+                      Material
+                    </h4>
+                    <div className="space-y-1.5">
+                      {["High-Clarity Glass", "Acrylic Bottles", "Pharma Grade Glass"].map((mat) => {
+                        const isChecked = selectedMaterials.includes(mat);
+                        const count = getCount("material", mat);
+                        return (
+                          <button
+                            key={mat}
+                            onClick={() => toggleFilter(mat, setSelectedMaterials)}
+                            className={`w-full flex items-center justify-between p-2 rounded-lg text-xs transition-all cursor-pointer text-left ${
+                              isChecked
+                                ? "bg-[#FAF4EA] text-[#121212] font-semibold border border-[#E5DCCB]"
+                                : "text-neutral-600 hover:bg-neutral-50"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <div
+                                className={`w-4 h-4 rounded-sm flex items-center justify-center transition-all ${
+                                  isChecked
+                                    ? "bg-[#121212] text-white"
+                                    : "border border-neutral-300 bg-white"
+                                }`}
+                              >
+                                {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
+                              </div>
+                              <span>{mat}</span>
+                            </div>
+                            <span className="text-[10px] text-neutral-400 font-normal">
+                              ({count})
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Finish Filter with Custom Checkboxes */}
+                  <div className="space-y-3 pt-3 border-t border-neutral-100">
+                    <h4 className="font-sans font-bold text-[11px] uppercase tracking-wider text-neutral-900">
+                      Finish
+                    </h4>
+                    <div className="space-y-1.5">
+                      {["Frosted Finish", "Clear Gloss", "Matte Smooth"].map((fin) => {
+                        const isChecked = selectedFinishes.includes(fin);
+                        const count = getCount("finish", fin);
+                        return (
+                          <button
+                            key={fin}
+                            onClick={() => toggleFilter(fin, setSelectedFinishes)}
+                            className={`w-full flex items-center justify-between p-2 rounded-lg text-xs transition-all cursor-pointer text-left ${
+                              isChecked
+                                ? "bg-[#FAF4EA] text-[#121212] font-semibold border border-[#E5DCCB]"
+                                : "text-neutral-600 hover:bg-neutral-50"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <div
+                                className={`w-4 h-4 rounded-sm flex items-center justify-center transition-all ${
+                                  isChecked
+                                    ? "bg-[#121212] text-white"
+                                    : "border border-neutral-300 bg-white"
+                                }`}
+                              >
+                                {isChecked && <Check className="w-3 h-3 stroke-[3]" />}
+                              </div>
+                              <span>{fin}</span>
+                            </div>
+                            <span className="text-[10px] text-neutral-400 font-normal">
+                              ({count})
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Color Filter with Visual Swatches */}
+                  <div className="space-y-3 pt-3 border-t border-neutral-100">
+                    <h4 className="font-sans font-bold text-[11px] uppercase tracking-wider text-neutral-900">
+                      Color & Tone
+                    </h4>
+                    <div className="space-y-1.5">
+                      {[
+                        { name: "Flint (Clear)", swatch: "bg-sky-100 border border-sky-300" },
+                        { name: "Amber Glass", swatch: "bg-amber-700" },
+                        { name: "Opaque White / Amber", swatch: "bg-neutral-100 border border-neutral-300" },
+                      ].map((col) => {
+                        const isChecked = selectedColors.includes(col.name);
+                        const count = getCount("color", col.name);
+                        return (
+                          <button
+                            key={col.name}
+                            onClick={() => toggleFilter(col.name, setSelectedColors)}
+                            className={`w-full flex items-center justify-between p-2 rounded-lg text-xs transition-all cursor-pointer text-left ${
+                              isChecked
+                                ? "bg-[#FAF4EA] text-[#121212] font-semibold border border-[#E5DCCB]"
+                                : "text-neutral-600 hover:bg-neutral-50"
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <span className={`w-3.5 h-3.5 rounded-full shrink-0 ${col.swatch} shadow-2xs`} />
+                              <span>{col.name}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-[10px] text-neutral-400 font-normal">
+                                ({count})
+                              </span>
+                              {isChecked && (
+                                <div className="w-4 h-4 rounded-full bg-[#121212] text-white flex items-center justify-center">
+                                  <Check className="w-2.5 h-2.5 stroke-[3]" />
+                                </div>
+                              )}
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
               </aside>
 
-              {/* Right Side Grid */}
+              {/* Right Side Products Content */}
               <div className="lg:col-span-9 space-y-6">
+                {/* Active Filter Badges Bar */}
+                {activeFiltersCount > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex flex-wrap items-center gap-2 p-3 bg-white rounded-lg border border-neutral-200/80 shadow-2xs text-xs"
+                  >
+                    <span className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider mr-1">
+                      Active:
+                    </span>
+
+                    {searchQuery && (
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-neutral-100 text-neutral-800 rounded-md font-medium text-xs">
+                        Search: &quot;{searchQuery}&quot;
+                        <button onClick={() => setSearchQuery("")} className="hover:text-black cursor-pointer">
+                          <X className="w-3 h-3 ml-0.5" />
+                        </button>
+                      </span>
+                    )}
+
+                    {selectedCapacity !== "All" && (
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-neutral-100 text-neutral-800 rounded-md font-medium text-xs">
+                        Volume: {selectedCapacity}
+                        <button onClick={() => setSelectedCapacity("All")} className="hover:text-black cursor-pointer">
+                          <X className="w-3 h-3 ml-0.5" />
+                        </button>
+                      </span>
+                    )}
+
+                    {selectedMaterials.map((mat) => (
+                      <span key={mat} className="inline-flex items-center gap-1 px-2.5 py-1 bg-[#FAF4EA] text-neutral-900 border border-[#E5DCCB] rounded-md font-medium text-xs">
+                        {mat}
+                        <button onClick={() => toggleFilter(mat, setSelectedMaterials)} className="hover:text-black cursor-pointer">
+                          <X className="w-3 h-3 ml-0.5" />
+                        </button>
+                      </span>
+                    ))}
+
+                    {selectedFinishes.map((fin) => (
+                      <span key={fin} className="inline-flex items-center gap-1 px-2.5 py-1 bg-[#FAF4EA] text-neutral-900 border border-[#E5DCCB] rounded-md font-medium text-xs">
+                        {fin}
+                        <button onClick={() => toggleFilter(fin, setSelectedFinishes)} className="hover:text-black cursor-pointer">
+                          <X className="w-3 h-3 ml-0.5" />
+                        </button>
+                      </span>
+                    ))}
+
+                    {selectedColors.map((col) => (
+                      <span key={col} className="inline-flex items-center gap-1 px-2.5 py-1 bg-[#FAF4EA] text-neutral-900 border border-[#E5DCCB] rounded-md font-medium text-xs">
+                        {col}
+                        <button onClick={() => toggleFilter(col, setSelectedColors)} className="hover:text-black cursor-pointer">
+                          <X className="w-3 h-3 ml-0.5" />
+                        </button>
+                      </span>
+                    ))}
+
+                    <button
+                      onClick={clearAllFilters}
+                      className="ml-auto text-xs font-semibold text-[#967C2F] hover:underline cursor-pointer"
+                    >
+                      Clear All
+                    </button>
+                  </motion.div>
+                )}
+
+                {/* Top Sort & Count Bar */}
                 <div className="flex items-center justify-between text-xs text-neutral-600 pb-4 border-b border-neutral-200">
-                  <span>Showing <strong className="text-neutral-900">{paginatedProducts.length}</strong> of {filteredProducts.length} products</span>
+                  <span>
+                    Showing <strong className="text-neutral-900">{paginatedProducts.length}</strong> of {filteredProducts.length} products
+                  </span>
 
                   <div className="flex items-center space-x-2">
                     <span className="uppercase text-[11px] tracking-wider font-semibold text-neutral-800">
