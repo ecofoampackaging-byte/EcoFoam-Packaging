@@ -101,20 +101,31 @@ export default function AboutPage() {
           </section>
 
           {/* Stats & Continuous Moving Country Flags Strip */}
-          <section className="bg-[#F5F3EF] border-b border-black/5 py-10 overflow-hidden">
+          <section className="bg-[#F5F3EF] border-b border-black/5 py-12 overflow-hidden">
             <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 mb-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.6 }}
+                className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center"
+              >
                 {companyStats.map((stat, idx) => (
-                  <div key={idx} className="space-y-1">
+                  <motion.div
+                    key={idx}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="space-y-1 p-3 bg-white/60 backdrop-blur-xs rounded-sm border border-neutral-200/60 shadow-2xs"
+                  >
                     <p className="font-serif text-2xl sm:text-3xl font-bold text-[#121212]">
                       {stat.value}
                     </p>
-                    <p className="text-[11px] uppercase tracking-wider text-neutral-500 font-medium">
+                    <p className="text-[11px] uppercase tracking-wider text-neutral-600 font-semibold">
                       {stat.label}
                     </p>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
 
             {/* Continuous Moving Country Flags Ticker (Left to Right) */}
@@ -130,44 +141,57 @@ export default function AboutPage() {
                   }}
                 >
                   {[...globalCountries, ...globalCountries, ...globalCountries, ...globalCountries].map((country, idx) => (
-                    <div
+                    <motion.div
                       key={idx}
+                      whileHover={{ scale: 1.08, y: -2 }}
                       className="inline-flex items-center space-x-2 px-4 py-2 bg-white/90 border border-neutral-300/80 rounded-full text-xs font-semibold text-neutral-800 shadow-2xs hover:border-neutral-900 transition-all cursor-default"
                     >
                       <span className="text-base leading-none">{country.flag}</span>
                       <span className="tracking-wide text-neutral-800">{country.name}</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </motion.div>
               </div>
             </div>
           </section>
 
-          {/* Acrylic Bottles Manufacturing Showcase Section */}
-          <section className="py-20 bg-white border-b border-neutral-200/80">
+          {/* Manufacturing Showcase Section */}
+          <section className="py-20 sm:py-24 bg-white border-b border-neutral-200/80">
             <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                {/* Left Visual Banner */}
-                <div className="lg:col-span-6 relative aspect-[4/3] rounded-sm overflow-hidden border border-neutral-200 shadow-lg group">
+                {/* Left Visual Banner with Smooth Viewport reveal */}
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  className="lg:col-span-6 relative aspect-[4/3] rounded-sm overflow-hidden border border-neutral-200 shadow-xl group"
+                >
                   <Image
                     src="/images/med-about-factory.jpg"
                     alt="EcoFoam Precision Medicine & Pharma Bottle Manufacturing"
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="object-cover group-hover:scale-106 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-                    <span className="px-3 py-1 bg-white/90 backdrop-blur-md text-[#121212] text-[9px] font-bold uppercase tracking-wider rounded-full shadow-xs inline-block mb-1">
+                    <span className="px-3 py-1 bg-white/95 backdrop-blur-md text-[#121212] text-[9px] font-bold uppercase tracking-wider rounded-full shadow-xs inline-block mb-1">
                       ISO 15378 CLEANROOM PHARMA
                     </span>
                     <h3 className="font-serif text-2xl font-normal text-white">
                       Automated Sterile Bottling & Production Lines
                     </h3>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Right Content */}
-                <div className="lg:col-span-6 space-y-6">
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  className="lg:col-span-6 space-y-6"
+                >
                   <div>
                     <span className="text-[10px] tracking-[0.25em] uppercase font-bold text-[#C5A059] block mb-2">
                       CORE MANUFACTURING CAPABILITY
@@ -181,43 +205,28 @@ export default function AboutPage() {
                     At <strong>EcoFoam Packaging</strong>, we specialize in high-precision medical and pharmaceutical bottle manufacturing. Designed to replicate the heavy, refractive clarity of crystal glass while offering superior shatter resistance, lightweight portability, and certified chemical stability.
                   </p>
 
-                  {/* Feature Highlights Grid */}
+                  {/* Feature Highlights Grid with hover animations */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                    <div className="p-4 bg-[#FBFBF9] rounded-sm border border-neutral-200/80 space-y-1.5">
-                      <h4 className="text-xs font-bold text-[#121212] uppercase tracking-wider">
-                        Double-Wall Insulation
-                      </h4>
-                      <p className="text-[11px] text-neutral-600 leading-relaxed font-light">
-                        Dual-layer walls that preserve thermal stability and shield volatile botanical and pharmaceutical compounds from degradation.
-                      </p>
-                    </div>
-
-                    <div className="p-4 bg-[#FBFBF9] rounded-sm border border-neutral-200/80 space-y-1.5">
-                      <h4 className="text-xs font-bold text-[#121212] uppercase tracking-wider">
-                        Custom Silk-Screen & Gold Foil
-                      </h4>
-                      <p className="text-[11px] text-neutral-600 leading-relaxed font-light">
-                        Direct high-definition silk-screen printing, metallic hot-stamping, and graduation scales tailored to brand requirements.
-                      </p>
-                    </div>
-
-                    <div className="p-4 bg-[#FBFBF9] rounded-sm border border-neutral-200/80 space-y-1.5">
-                      <h4 className="text-xs font-bold text-[#121212] uppercase tracking-wider">
-                        Heavy-Base Stability
-                      </h4>
-                      <p className="text-[11px] text-neutral-600 leading-relaxed font-light">
-                        Weighted bottom profile delivering pharmaceutical-grade structural stability and clinical clarity with zero breakage risk.
-                      </p>
-                    </div>
-
-                    <div className="p-4 bg-[#FBFBF9] rounded-sm border border-neutral-200/80 space-y-1.5">
-                      <h4 className="text-xs font-bold text-[#121212] uppercase tracking-wider">
-                        Factory Direct Spot Delivery
-                      </h4>
-                      <p className="text-[11px] text-neutral-600 leading-relaxed font-light">
-                        Readily available stock molds and custom runs with ultra-low MOQs and rapid fulfillment for immediate market launch.
-                      </p>
-                    </div>
+                    {[
+                      { title: "Double-Wall Insulation", text: "Dual-layer walls that preserve thermal stability and shield volatile botanical and pharmaceutical compounds." },
+                      { title: "Custom Silk-Screen & Foil", text: "Direct high-definition silk-screen printing, metallic hot-stamping, and graduation scales tailored to brand requirements." },
+                      { title: "Heavy-Base Stability", text: "Weighted bottom profile delivering pharmaceutical-grade structural stability and clinical clarity with zero breakage risk." },
+                      { title: "Factory Direct Spot Delivery", text: "Readily available stock molds and custom runs with ultra-low MOQs and rapid fulfillment for immediate market launch." }
+                    ].map((feature, fIdx) => (
+                      <motion.div
+                        key={fIdx}
+                        whileHover={{ y: -4, borderColor: "#121212" }}
+                        transition={{ duration: 0.2 }}
+                        className="p-4 bg-[#FBFBF9] rounded-sm border border-neutral-200/80 space-y-1.5 shadow-2xs transition-colors"
+                      >
+                        <h4 className="text-xs font-bold text-[#121212] uppercase tracking-wider">
+                          {feature.title}
+                        </h4>
+                        <p className="text-[11px] text-neutral-600 leading-relaxed font-light">
+                          {feature.text}
+                        </p>
+                      </motion.div>
+                    ))}
                   </div>
 
                   <div className="pt-2 flex items-center space-x-4">
@@ -235,7 +244,7 @@ export default function AboutPage() {
                       Request Bottle Sample
                     </button>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
           </section>

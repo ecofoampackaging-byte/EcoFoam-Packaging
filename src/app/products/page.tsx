@@ -11,6 +11,7 @@ import PageTransition from "@/components/PageTransition";
 import { CatalogProduct, ProductItem } from "@/types";
 import { fullProductCatalog } from "@/data/products";
 import { ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function ProductsPage() {
   const [quoteOpen, setQuoteOpen] = useState(false);
@@ -192,58 +193,69 @@ export default function ProductsPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-2">
-                  {paginatedProducts.map((item) => (
-                    <div
-                      key={item.id}
-                      className="group bg-white flex flex-col justify-between p-4 border border-neutral-200/70 hover:shadow-md transition-all duration-300 rounded-sm"
-                    >
-                      <div>
-                        <div className="relative aspect-square w-full bg-neutral-100 mb-4 overflow-hidden rounded-xs border border-neutral-100">
-                          <Image
-                            src={item.image}
-                            alt={item.title}
-                            fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                          <div className="absolute top-2.5 left-2.5 flex gap-1 flex-wrap">
-                            {item.badges.map((b) => (
-                              <span
-                                key={b}
-                                className="px-2 py-0.5 bg-white/95 text-[9px] uppercase tracking-wider font-semibold text-neutral-800 rounded-xs shadow-2xs border border-neutral-200"
-                              >
-                                {b}
-                              </span>
-                            ))}
+                <motion.div
+                  layout
+                  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-2"
+                >
+                  <AnimatePresence mode="popLayout">
+                    {paginatedProducts.map((item) => (
+                      <motion.div
+                        layout
+                        key={item.id}
+                        initial={{ opacity: 0, scale: 0.94 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.94 }}
+                        transition={{ duration: 0.35, ease: "easeOut" }}
+                        whileHover={{ y: -6 }}
+                        className="group bg-white flex flex-col justify-between p-4 border border-neutral-200/80 hover:border-neutral-900 shadow-xs hover:shadow-xl transition-all duration-300 rounded-sm"
+                      >
+                        <div>
+                          <div className="relative aspect-square w-full bg-neutral-100 mb-4 overflow-hidden rounded-xs border border-neutral-100">
+                            <Image
+                              src={item.image}
+                              alt={item.title}
+                              fill
+                              className="object-cover group-hover:scale-106 transition-transform duration-500 ease-out"
+                            />
+                            <div className="absolute top-2.5 left-2.5 flex gap-1 flex-wrap z-10">
+                              {item.badges.map((b) => (
+                                <span
+                                  key={b}
+                                  className="px-2 py-0.5 bg-white/95 text-[9px] uppercase tracking-wider font-semibold text-neutral-800 rounded-xs shadow-2xs border border-neutral-200"
+                                >
+                                  {b}
+                                </span>
+                              ))}
+                            </div>
                           </div>
+
+                          <h4 className="font-serif font-medium text-sm text-[#121212] mb-1 group-hover:text-[#C5A059] transition-colors leading-snug">
+                            {item.title}
+                          </h4>
+                          <p className="text-[11px] text-neutral-500 font-sans mb-4">
+                            {item.subtext}
+                          </p>
                         </div>
 
-                        <h4 className="font-serif font-medium text-sm text-[#121212] mb-1 group-hover:text-[#C5A059] transition-colors">
-                          {item.title}
-                        </h4>
-                        <p className="text-[11px] text-neutral-500 font-sans mb-4">
-                          {item.subtext}
-                        </p>
-                      </div>
-
-                      <div className="pt-2 border-t border-neutral-100 flex items-center justify-between">
-                        <button
-                          onClick={() => handleInquire(item.title)}
-                          className="text-xs font-bold tracking-widest uppercase text-[#967C2F] hover:text-[#121212] transition-colors flex items-center space-x-1"
-                        >
-                          <span>INQUIRE</span>
-                          <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                        <button
-                          onClick={() => setDetailProduct(convertToProductItem(item))}
-                          className="text-[11px] text-neutral-400 hover:text-neutral-700"
-                        >
-                          Details
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                        <div className="pt-3 border-t border-neutral-100 flex items-center justify-between">
+                          <button
+                            onClick={() => handleInquire(item.title)}
+                            className="text-xs font-bold tracking-widest uppercase text-[#967C2F] hover:text-[#121212] transition-colors flex items-center space-x-1 cursor-pointer group/inq"
+                          >
+                            <span>INQUIRE</span>
+                            <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover/inq:translate-x-1 transition-transform" />
+                          </button>
+                          <button
+                            onClick={() => setDetailProduct(convertToProductItem(item))}
+                            className="text-[11px] font-medium text-neutral-400 hover:text-neutral-900 transition-colors cursor-pointer"
+                          >
+                            Details
+                          </button>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </motion.div>
 
                 {filteredProducts.length === 0 && (
                   <div className="text-center py-16 space-y-3">

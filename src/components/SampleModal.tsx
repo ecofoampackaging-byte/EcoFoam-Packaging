@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { X, CheckCircle, Truck } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { sampleBoxes } from "@/data/company";
 
 interface SampleModalProps {
@@ -19,16 +20,28 @@ export default function SampleModal({ isOpen, onClose }: SampleModalProps) {
     address: "",
   });
 
-  if (!isOpen) return null;
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-      <div className="bg-white max-w-xl w-full rounded-sm shadow-2xl overflow-hidden border border-neutral-200">
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-sm"
+        >
+          <motion.div
+            initial={{ scale: 0.93, opacity: 0, y: 15 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.93, opacity: 0, y: 15 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
+            className="bg-white max-w-xl w-full rounded-sm shadow-2xl overflow-hidden border border-neutral-200 max-h-[90vh] overflow-y-auto"
+          >
         {/* Header matching dark charcoal theme with official logo */}
         <div className="bg-[#14181B] text-white px-6 sm:px-8 py-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -176,7 +189,9 @@ export default function SampleModal({ isOpen, onClose }: SampleModalProps) {
             </button>
           </div>
         )}
-      </div>
-    </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

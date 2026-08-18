@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { X, CheckCircle, Calculator, Send } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -27,8 +28,6 @@ export default function QuoteModal({
     }
   }, [preselectedProduct]);
 
-  if (!isOpen) return null;
-
   const getEstimatedUnitCost = () => {
     let base = 0.45;
     if (foamType.includes("Amber") || foamType.includes("Frosted")) base += 0.25;
@@ -43,21 +42,35 @@ export default function QuoteModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-      <div className="bg-white max-w-xl w-full rounded-sm shadow-2xl overflow-hidden border border-neutral-200">
-        {/* Header matching dark theme with official logo */}
-        <div className="bg-[#14181B] text-white px-6 sm:px-8 py-5 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="relative w-9 h-9 shrink-0">
-              <Image
-                src="/images/logo-mark.png"
-                alt="EcoForm Packaging"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <div>
-              <span className="text-[9px] tracking-[0.2em] uppercase text-neutral-400 block font-sans font-bold">
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-sm"
+        >
+          <motion.div
+            initial={{ scale: 0.93, opacity: 0, y: 15 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.93, opacity: 0, y: 15 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
+            className="bg-white max-w-xl w-full rounded-sm shadow-2xl overflow-hidden border border-neutral-200"
+          >
+            {/* Header matching dark theme with official logo */}
+            <div className="bg-[#14181B] text-white px-6 sm:px-8 py-5 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="relative w-9 h-9 shrink-0">
+                  <Image
+                    src="/images/logo-mark.png"
+                    alt="EcoForm Packaging"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div>
+                  <span className="text-[9px] tracking-[0.2em] uppercase text-neutral-400 block font-sans font-bold">
                 INSTANT B2B QUOTATION
               </span>
               <h3 className="font-serif text-xl sm:text-2xl font-normal tracking-tight text-white">
@@ -209,7 +222,9 @@ export default function QuoteModal({
             </button>
           </div>
         )}
-      </div>
-    </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
