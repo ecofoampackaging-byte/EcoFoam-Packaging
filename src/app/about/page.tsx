@@ -303,7 +303,7 @@ export default function AboutPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                   <div className="lg:col-span-7 relative h-[300px] sm:h-[340px] rounded-sm overflow-hidden group shadow-sm border border-neutral-200">
                     <Image
-                      src="/images/client-health-beige.png"
+                      src="/images/hero-glass.png"
                       alt="Pharma Glass Containers"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -328,7 +328,7 @@ export default function AboutPage() {
 
                   <div className="lg:col-span-5 relative h-[300px] sm:h-[340px] rounded-sm overflow-hidden group shadow-sm border border-neutral-200">
                     <Image
-                      src="/images/client-teal-nmn.png"
+                      src="/images/cosmetic-jars.png"
                       alt="Cosmetic Jars"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -352,7 +352,7 @@ export default function AboutPage() {
 
                 <div className="relative h-[300px] sm:h-[340px] w-full rounded-sm overflow-hidden group shadow-sm border border-neutral-200">
                   <Image
-                    src="/images/client-marble-display.png"
+                    src="/images/frosted-pharma.png"
                     alt="Nutraceutical Packaging Containers"
                     fill
                     className="object-cover object-bottom group-hover:scale-105 transition-transform duration-500"
