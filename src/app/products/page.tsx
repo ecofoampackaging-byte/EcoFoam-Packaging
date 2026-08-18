@@ -81,20 +81,20 @@ export default function ProductsPage() {
           {/* Product Page Hero */}
           <section className="relative w-full h-[380px] sm:h-[440px] flex items-center justify-center overflow-hidden bg-[#5E8E87]">
             <Image
-              src="/images/clear-nutra.png"
-              alt="EcoForm Premium Plastic & Acrylic Solutions"
+              src="/images/ecofoam-nutra-hero.jpg"
+              alt="EcoFoam Medicine & Pharmaceutical Bottle Solutions"
               fill
               priority
               className="object-cover filter brightness-[0.92] contrast-[1.05]"
             />
-            <div className="absolute inset-0 bg-black/10" />
+            <div className="absolute inset-0 bg-black/20" />
 
             <div className="relative z-10 max-w-2xl mx-auto px-6 py-10 bg-white/90 backdrop-blur-md text-center shadow-lg border border-white/40">
               <h1 className="font-serif text-3xl sm:text-4xl text-[#121212] tracking-tight font-normal mb-3">
-                PREMIUM PLASTIC & ACRYLIC BOTTLES
+                MEDICINE & PHARMACEUTICAL BOTTLES
               </h1>
               <p className="text-neutral-700 text-xs sm:text-sm font-sans font-light leading-relaxed max-w-md mx-auto">
-                Exquisite plastic & acrylic bottles for beauty, home fragrance, and premium lifestyle brands. Explore our artisanal collection.
+                Precision-engineered pharmaceutical, medicine, capsule, and nutraceutical bottles. Certified medical-grade collection designed for maximum formula stability.
               </p>
             </div>
           </section>

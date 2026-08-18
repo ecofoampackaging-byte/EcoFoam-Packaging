@@ -30,24 +30,24 @@ export const companyStats: CompanyStat[] = [
 
 export const companyPillars: CompanyPillar[] = [
   {
-    title: "High-Grade PMMA Acrylic Molding",
+    title: "High-Grade Medical Polymer & Glass Molding",
     description:
-      "Advanced injection-blow molding delivering crystal-clear transparency with heavy-base shatterproof durability for luxury formulations.",
+      "Advanced injection-blow molding delivering crystal-clear transparency with heavy-base shatterproof durability for pharmaceutical and medical formulations.",
   },
   {
     title: "99.8% UV Light Protection",
     description:
-      "High-density amber and opaque matte barriers specifically calibrated to block harmful light wavelengths between 290nm and 450nm.",
+      "High-density amber and opaque matte barriers specifically calibrated to block harmful light wavelengths between 290nm and 450nm for sensitive medicines.",
   },
   {
-    title: "Precision Double-Wall Engineering",
+    title: "Precision Airtight Sealing",
     description:
-      "Engineered multi-layer acrylic structures with airless dispensing mechanisms to isolate active serums from oxygen and oxidation.",
+      "Engineered multi-layer structures with tamper-evident and child-resistant closures to isolate sensitive pharmaceuticals from moisture and oxidation.",
   },
   {
     title: "360° Laser Optical Quality Control",
     description:
-      "Every bottle undergoes high-speed optical inspection verifying wall thickness, continuous thread precision, and airtight sealing.",
+      "Every medicine bottle undergoes high-speed optical inspection verifying wall thickness, continuous thread precision, and airtight hermetic sealing.",
   },
 ];
 

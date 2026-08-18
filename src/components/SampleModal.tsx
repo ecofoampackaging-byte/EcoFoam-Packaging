@@ -60,7 +60,7 @@ export default function SampleModal({ isOpen, onClose }: SampleModalProps) {
         {!submitted ? (
           <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-6">
             <p className="text-xs sm:text-sm text-neutral-600 font-sans leading-relaxed">
-              Select a sample kit below. All evaluation boxes include material ASTM D6400 compostability specs and shock absorption test reports.
+              Select a medicine bottle sample evaluation kit below. All evaluation boxes include pharmaceutical-grade material certifications, UV barrier transmission specs, and airtight seal test reports.
             </p>
 
             {/* Radio Box options matching exact image */}

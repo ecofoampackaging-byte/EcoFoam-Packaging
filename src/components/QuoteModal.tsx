@@ -15,8 +15,8 @@ export default function QuoteModal({
   onClose,
   preselectedProduct,
 }: QuoteModalProps) {
-  const [foamType, setFoamType] = useState(preselectedProduct || "Biodegradable Molded Inserts");
-  const [density, setDensity] = useState("Medium Density (35 g/L)");
+  const [foamType, setFoamType] = useState(preselectedProduct || "Amber Glass Medicine Bottles (UV-Shield)");
+  const [density, setDensity] = useState("150ml (Standard Tablets & Capsules)");
   const [quantity, setQuantity] = useState(5000);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", company: "", notes: "" });
@@ -31,7 +31,7 @@ export default function QuoteModal({
 
   const getEstimatedUnitCost = () => {
     let base = 0.45;
-    if (foamType.includes("Thermal")) base += 0.35;
+    if (foamType.includes("Amber") || foamType.includes("Frosted")) base += 0.25;
     if (quantity > 10000) base *= 0.82;
     else if (quantity > 5000) base *= 0.90;
     return base.toFixed(2);
@@ -61,7 +61,7 @@ export default function QuoteModal({
                 INSTANT B2B QUOTATION
               </span>
               <h3 className="font-serif text-xl sm:text-2xl font-normal tracking-tight text-white">
-                Request EcoForm Production Quote
+                Request Medicine Bottle Quote
               </h3>
             </div>
           </div>
@@ -78,32 +78,33 @@ export default function QuoteModal({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-2">
-                  EcoForm Category
+                  Bottle Category
                 </label>
                 <select
                   value={foamType}
                   onChange={(e) => setFoamType(e.target.value)}
                   className="w-full text-xs p-3.5 bg-neutral-50/50 border border-neutral-300 rounded-md focus:ring-1 focus:ring-[#14181B] focus:border-[#14181B] focus:outline-none"
                 >
-                  <option>Biodegradable Molded Inserts</option>
-                  <option>Eco-Foam Thermal Insulation Blocks</option>
-                  <option>Bio Corner & Edge Protectors</option>
-                  <option>Custom Starch Molded Cooler Payload</option>
+                  <option>Amber Glass Medicine Bottles (UV-Shield)</option>
+                  <option>Ultra-Clear NMN & Supplement Bottles</option>
+                  <option>Frosted Pharmaceutical Tablet Bottles</option>
+                  <option>Matte Black Light-Barrier Capsule Bottles</option>
+                  <option>Frosted Pharma Ointment & Balm Jars</option>
                 </select>
               </div>
 
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-2">
-                  Foam Density Grade
+                  Capacity & Neck Specification
                 </label>
                 <select
                   value={density}
                   onChange={(e) => setDensity(e.target.value)}
                   className="w-full text-xs p-3.5 bg-neutral-50/50 border border-neutral-300 rounded-md focus:ring-1 focus:ring-[#14181B] focus:border-[#14181B] focus:outline-none"
                 >
-                  <option>Light Cushioning (20 g/L)</option>
-                  <option>Medium Density (35 g/L)</option>
-                  <option>Heavy Duty Structural (55 g/L)</option>
+                  <option>50ml - 100ml (Liquid Syrups & Drops)</option>
+                  <option>120ml - 150ml (Standard Tablets & Capsules)</option>
+                  <option>200ml - 250ml (Bulk Pills & Liquids)</option>
                 </select>
               </div>
             </div>
@@ -180,10 +181,10 @@ export default function QuoteModal({
 
             <button
               type="submit"
-              className="w-full py-3.5 bg-[#14181B] text-white text-xs font-bold uppercase tracking-wider rounded-md hover:bg-[#252A2E] transition-all flex items-center justify-center space-x-2 shadow-xs"
+              className="w-full py-3.5 bg-[#14181B] text-white text-xs font-bold uppercase tracking-wider rounded-md hover:bg-[#252A2E] transition-all flex items-center justify-center space-x-2 shadow-xs cursor-pointer"
             >
               <Send className="w-3.5 h-3.5" />
-              <span>SUBMIT ECOFOAM QUOTATION REQUEST</span>
+              <span>SUBMIT MEDICINE BOTTLE QUOTE REQUEST</span>
             </button>
           </form>
         ) : (

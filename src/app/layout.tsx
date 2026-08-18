@@ -17,18 +17,20 @@ const jakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "EcoForm Packaging | Premium Pharmaceutical & Health Packaging Bottles",
+    default: "EcoForm Packaging | Premium Medicine & Pharmaceutical Bottles",
     template: "%s | EcoForm Packaging",
   },
   description:
-    "Factory direct spot quick delivery health product bottles, frosted & clear vessels for pharmaceuticals, cosmetics, and nutraceuticals.",
+    "Factory direct spot quick delivery medicine bottles, frosted, clear & amber vessels for pharmaceuticals, tablets, syrups, and nutraceuticals.",
   keywords: [
     "EcoForm Packaging",
-    "Health Product Bottles",
+    "Medicine Bottles",
     "Pharmaceutical Bottles",
-    "Nutraceutical Jars",
-    "Amber Glass Bottles",
-    "Frosted Glass Vessels",
+    "Nutraceutical Bottles",
+    "Capsule Jars",
+    "Syrup Bottles",
+    "Amber Glass Medicine Bottles",
+    "Frosted Pharma Vessels",
     "NMN Bottles",
   ],
   icons: {
@@ -38,9 +40,9 @@ export const metadata: Metadata = {
   },
   authors: [{ name: "EcoForm Packaging" }],
   openGraph: {
-    title: "EcoForm Packaging | Premium Health & Pharma Bottles",
+    title: "EcoForm Packaging | Premium Medicine & Pharma Bottles",
     description:
-      "Factory direct spot quick delivery health product bottles, frosted, amber, and clear vessels.",
+      "Factory direct spot quick delivery medicine bottles, frosted, amber, and clear vessels.",
     siteName: "EcoForm Packaging",
     type: "website",
     locale: "en_US",

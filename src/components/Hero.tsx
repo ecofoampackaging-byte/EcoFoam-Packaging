@@ -13,13 +13,13 @@ export default function Hero({ onExploreClick }: HeroProps) {
       {/* Background Image Container */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-glass.png"
-          alt="EcoFoam Glass & Plastic Packaging"
+          src="/images/ecofoam-hero-pharma.jpg"
+          alt="EcoFoam Medicine & Pharmaceutical Bottle Packaging"
           fill
           priority
           className="object-cover object-center filter brightness-[0.98] contrast-[1.02]"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-transparent pointer-events-none" />
       </div>
 
       {/* Top subtle brand watermark matching reference image text */}
@@ -33,13 +33,11 @@ export default function Hero({ onExploreClick }: HeroProps) {
       <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 w-full py-16 lg:py-24">
         <div className="w-full max-w-lg bg-white/95 backdrop-blur-sm p-8 sm:p-12 shadow-xl border border-neutral-100 rounded-none sm:rounded-sm transition-all duration-300">
           <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.65rem] leading-[1.25] font-normal text-[#121212] mb-6 tracking-tight">
-            Excellence in Plastic & Acrylic Packaging
+            Excellence in Medicine & Pharma Bottle Packaging
           </h1>
 
           <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-sans mb-8">
-            Precision-engineered plastic & acrylic bottles for pharmaceutical, cosmetic, and
-            nutraceutical applications. Defined by clarity, structural integrity,
-            and minimalist luxury.
+            Precision-engineered medical-grade bottles for pharmaceuticals, tablets, syrups, drops, and nutraceutical applications. Defined by optical purity, UV barrier protection, and certified structural integrity.
           </p>
 
           <div>

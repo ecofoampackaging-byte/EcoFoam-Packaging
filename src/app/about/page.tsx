@@ -58,13 +58,13 @@ export default function AboutPage() {
           <section className="relative w-full min-h-[580px] lg:min-h-[640px] flex items-center overflow-hidden bg-[#EBE7DF]">
             <div className="absolute inset-0 z-0">
               <Image
-                src="/images/about-hero.png"
-                alt="EcoForm Packaging Solutions"
+                src="/images/ecofoam-hero-pharma.jpg"
+                alt="EcoFoam Medicine Packaging Solutions"
                 fill
                 priority
                 className="object-cover object-center filter brightness-[0.98] contrast-[1.02]"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-transparent pointer-events-none" />
             </div>
 
             <div className="absolute top-6 w-full text-center z-10 pointer-events-none">
@@ -76,7 +76,7 @@ export default function AboutPage() {
             <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 w-full py-16 lg:py-24">
               <div className="w-full max-w-lg bg-white/95 backdrop-blur-sm p-8 sm:p-12 shadow-xl border border-neutral-100 rounded-none sm:rounded-sm transition-all duration-300">
                 <span className="text-[10px] tracking-[0.25em] uppercase font-bold text-[#C5A059] block mb-3">
-                  EXCELLENCE IN ACRYLIC BOTTLES
+                  EXCELLENCE IN MEDICINE & PHARMA BOTTLES
                 </span>
 
                 <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.65rem] leading-[1.2] font-normal text-[#121212] mb-5 tracking-tight">
@@ -84,7 +84,7 @@ export default function AboutPage() {
                 </h1>
 
                 <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-sans mb-8">
-                  Premium acrylic bottles packaging solutions for pharmaceuticals, cosmetics, and nutraceuticals. Elevate your brand with uncompromising quality and minimalist design.
+                  Premium medical-grade bottles and packaging solutions for pharmaceuticals, tablets, syrups, and nutraceuticals. Safeguard formula purity with uncompromising quality and certified integrity.
                 </p>
 
                 <div>
@@ -150,18 +150,18 @@ export default function AboutPage() {
                 {/* Left Visual Banner */}
                 <div className="lg:col-span-6 relative aspect-[4/3] rounded-sm overflow-hidden border border-neutral-200 shadow-lg group">
                   <Image
-                    src="/images/about-factory.png"
-                    alt="EcoForm Precision Acrylic Bottles Manufacturing"
+                    src="/images/med-about-factory.jpg"
+                    alt="EcoFoam Precision Medicine & Pharma Bottle Manufacturing"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
                     <span className="px-3 py-1 bg-white/90 backdrop-blur-md text-[#121212] text-[9px] font-bold uppercase tracking-wider rounded-full shadow-xs inline-block mb-1">
-                      PRECISION PMMA ACRYLIC
+                      ISO 15378 CLEANROOM PHARMA
                     </span>
                     <h3 className="font-serif text-2xl font-normal text-white">
-                      Crystal Glass Clarity with Shatterproof Durability
+                      Automated Sterile Bottling & Production Lines
                     </h3>
                   </div>
                 </div>
@@ -173,12 +173,12 @@ export default function AboutPage() {
                       CORE MANUFACTURING CAPABILITY
                     </span>
                     <h2 className="font-serif text-3xl sm:text-4xl text-[#121212] font-normal leading-tight">
-                      Engineered Acrylic Bottles for Health, Pharma & Luxury Brands
+                      Engineered Medicine & Health Bottles for Pharma, Clinical & Wellness Brands
                     </h2>
                   </div>
 
                   <p className="text-neutral-600 text-sm leading-relaxed font-sans font-light">
-                    At <strong>EcoForm Packaging</strong>, we specialize in high-precision acrylic (PMMA) bottle manufacturing. Designed to replicate the heavy, refractive elegance of crystal glass while offering superior shatter resistance, lightweight portability, and flawless chemical stability.
+                    At <strong>EcoFoam Packaging</strong>, we specialize in high-precision medical and pharmaceutical bottle manufacturing. Designed to replicate the heavy, refractive clarity of crystal glass while offering superior shatter resistance, lightweight portability, and certified chemical stability.
                   </p>
 
                   {/* Feature Highlights Grid */}
@@ -188,7 +188,7 @@ export default function AboutPage() {
                         Double-Wall Insulation
                       </h4>
                       <p className="text-[11px] text-neutral-600 leading-relaxed font-light">
-                        Dual-layer acrylic walls that preserve thermal stability and shield volatile botanical and pharmaceutical compounds from degradation.
+                        Dual-layer walls that preserve thermal stability and shield volatile botanical and pharmaceutical compounds from degradation.
                       </p>
                     </div>
 
@@ -203,10 +203,10 @@ export default function AboutPage() {
 
                     <div className="p-4 bg-[#FBFBF9] rounded-sm border border-neutral-200/80 space-y-1.5">
                       <h4 className="text-xs font-bold text-[#121212] uppercase tracking-wider">
-                        Heavy-Base Luxury Feel
+                        Heavy-Base Stability
                       </h4>
                       <p className="text-[11px] text-neutral-600 leading-relaxed font-light">
-                        Weighted bottom profile delivering the luxurious hand-feel of prestige perfume and cosmetic glass bottles with zero breakage risk.
+                        Weighted bottom profile delivering pharmaceutical-grade structural stability and clinical clarity with zero breakage risk.
                       </p>
                     </div>
 
@@ -225,14 +225,14 @@ export default function AboutPage() {
                       href="/products"
                       className="inline-flex items-center justify-center px-6 py-3 bg-[#121212] text-white text-xs tracking-wider uppercase font-semibold rounded-sm hover:bg-[#2b2b2b] transition-all shadow-xs group"
                     >
-                      <span>View Acrylic Catalog</span>
+                      <span>View Medicine Bottles Catalog</span>
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Link>
                     <button
                       onClick={() => setSampleOpen(true)}
                       className="inline-flex items-center justify-center px-6 py-3 border border-neutral-300 text-[#121212] text-xs tracking-wider uppercase font-semibold rounded-sm hover:bg-neutral-100 transition-all cursor-pointer"
                     >
-                      Request Acrylic Sample
+                      Request Bottle Sample
                     </button>
                   </div>
                 </div>
@@ -245,10 +245,10 @@ export default function AboutPage() {
             <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
               <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
                 <h2 className="font-serif text-3xl sm:text-4xl text-[#121212] font-normal">
-                  The EcoForm Standard
+                  The EcoFoam Standard
                 </h2>
                 <p className="text-neutral-600 text-sm font-sans font-light leading-relaxed">
-                  Engineered for perfection, designed for impact. Our acrylic and glass vessels undergo rigorous optical and pressure testing to ensure flawless performance.
+                  Engineered for perfection, designed for impact. Our pharmaceutical and health vessels undergo rigorous optical and pressure testing to ensure flawless performance.
                 </p>
               </div>
 
@@ -287,7 +287,7 @@ export default function AboutPage() {
                     Industries We Serve
                   </h2>
                   <p className="text-neutral-600 text-sm font-sans font-light">
-                    Tailored packaging solutions across diverse sectors.
+                    Tailored packaging solutions across medical & pharmaceutical sectors.
                   </p>
                 </div>
 
@@ -303,8 +303,8 @@ export default function AboutPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                   <div className="lg:col-span-7 relative h-[300px] sm:h-[340px] rounded-sm overflow-hidden group shadow-sm border border-neutral-200">
                     <Image
-                      src="/images/hero-glass.png"
-                      alt="Pharma Glass Containers"
+                      src="/images/ecofoam-syrup.jpg"
+                      alt="EcoFoam Pharma Liquid Containers"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
@@ -318,27 +318,36 @@ export default function AboutPage() {
 
                     <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
                       <h3 className="font-serif text-2xl font-normal">
-                        Pharma Glass
+                        Pharmaceutical Liquids & Syrups
                       </h3>
                       <p className="text-xs text-neutral-200 max-w-md font-sans">
-                        Ensuring chemical stability and protecting sensitive formulations with our premium amber and clear vials.
+                        Ensuring chemical stability and protecting sensitive oral drops, syrups, and medical solutions with EcoFoam certified amber bottles.
                       </p>
                     </div>
                   </div>
 
                   <div className="lg:col-span-5 relative h-[300px] sm:h-[340px] rounded-sm overflow-hidden group shadow-sm border border-neutral-200">
                     <Image
-                      src="/images/cosmetic-jars.png"
-                      alt="Cosmetic Jars"
+                      src="/images/ecofoam-rx.jpg"
+                      alt="EcoFoam Capsule & Tablet Containers"
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#121212] text-[9px] font-bold uppercase tracking-wider rounded-full">
+                        CAPSULES & TABLETS
+                      </span>
+                    </div>
+
                     <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
                       <h3 className="font-serif text-2xl font-normal">
-                        Cosmetic Jars
+                        Capsule & Tablet Bottles
                       </h3>
+                      <p className="text-xs text-neutral-200 max-w-sm font-sans">
+                        Airtight moisture-sealed EcoFoam bottles engineered specifically for pills, vitamins, and prescription tablets.
+                      </p>
                       <Link
                         href="/products"
                         className="inline-flex items-center text-xs font-semibold uppercase tracking-wider text-neutral-200 hover:text-white transition-colors pt-1"
@@ -352,8 +361,8 @@ export default function AboutPage() {
 
                 <div className="relative h-[300px] sm:h-[340px] w-full rounded-sm overflow-hidden group shadow-sm border border-neutral-200">
                   <Image
-                    src="/images/frosted-pharma.png"
-                    alt="Nutraceutical Packaging Containers"
+                    src="/images/ecofoam-nutra-hero.jpg"
+                    alt="EcoFoam Nutraceutical Packaging Containers"
                     fill
                     className="object-cover object-bottom group-hover:scale-105 transition-transform duration-500"
                   />
