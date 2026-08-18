@@ -23,7 +23,6 @@ export default function ProductsPage() {
   const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
   const [selectedFinishes, setSelectedFinishes] = useState<string[]>([]);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
-  const [selectedCapacity, setSelectedCapacity] = useState<string>("All");
   const [sortBy, setSortBy] = useState("Recommended");
   const [currentPage, setCurrentPage] = useState(1);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -44,7 +43,6 @@ export default function ProductsPage() {
     setSelectedMaterials([]);
     setSelectedFinishes([]);
     setSelectedColors([]);
-    setSelectedCapacity("All");
     setCurrentPage(1);
   };
 
@@ -52,11 +50,7 @@ export default function ProductsPage() {
     (searchQuery ? 1 : 0) +
     selectedMaterials.length +
     selectedFinishes.length +
-    selectedColors.length +
-    (selectedCapacity !== "All" ? 1 : 0);
-
-  // Available capacities from products
-  const capacities = ["All", "50ml", "100ml", "120ml", "150ml", "200ml", "250ml"];
+    selectedColors.length;
 
   // Filtered Products
   const filteredProducts = useMemo(() => {
@@ -89,16 +83,9 @@ export default function ProductsPage() {
         return false;
       }
 
-      // Capacity
-      if (selectedCapacity !== "All") {
-        if (!item.specs.capacity.toLowerCase().includes(selectedCapacity.toLowerCase())) {
-          return false;
-        }
-      }
-
       return true;
     });
-  }, [searchQuery, selectedMaterials, selectedFinishes, selectedColors, selectedCapacity]);
+  }, [searchQuery, selectedMaterials, selectedFinishes, selectedColors]);
 
   // Counts helper
   const getCount = (key: "material" | "finish" | "color", val: string) => {
@@ -282,33 +269,8 @@ export default function ProductsPage() {
                     )}
                   </div>
 
-                  {/* Volume / Capacity Filter Chips */}
-                  <div className="space-y-2.5">
-                    <label className="block text-[11px] font-bold uppercase tracking-wider text-neutral-900">
-                      Volume / Capacity
-                    </label>
-                    <div className="flex flex-wrap gap-1.5">
-                      {capacities.map((cap) => (
-                        <button
-                          key={cap}
-                          onClick={() => {
-                            setSelectedCapacity(cap);
-                            setCurrentPage(1);
-                          }}
-                          className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all cursor-pointer ${
-                            selectedCapacity === cap
-                              ? "bg-[#121212] text-white shadow-xs font-semibold"
-                              : "bg-neutral-100/80 text-neutral-700 hover:bg-neutral-200/80"
-                          }`}
-                        >
-                          {cap}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
                   {/* Material Filter with Custom Checkboxes & Counts */}
-                  <div className="space-y-3 pt-3 border-t border-neutral-100">
+                  <div className="space-y-3 pt-1">
                     <h4 className="font-sans font-bold text-[11px] uppercase tracking-wider text-neutral-900">
                       Material
                     </h4>
@@ -449,15 +411,6 @@ export default function ProductsPage() {
                       <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-neutral-100 text-neutral-800 rounded-md font-medium text-xs">
                         Search: &quot;{searchQuery}&quot;
                         <button onClick={() => setSearchQuery("")} className="hover:text-black cursor-pointer">
-                          <X className="w-3 h-3 ml-0.5" />
-                        </button>
-                      </span>
-                    )}
-
-                    {selectedCapacity !== "All" && (
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-neutral-100 text-neutral-800 rounded-md font-medium text-xs">
-                        Volume: {selectedCapacity}
-                        <button onClick={() => setSelectedCapacity("All")} className="hover:text-black cursor-pointer">
                           <X className="w-3 h-3 ml-0.5" />
                         </button>
                       </span>
