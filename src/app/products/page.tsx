@@ -10,7 +10,7 @@ import ProductDetailModal from "@/components/ProductDetailModal";
 import PageTransition from "@/components/PageTransition";
 import { CatalogProduct, ProductItem } from "@/types";
 import { fullProductCatalog } from "@/data/products";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Eye, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function ProductsPage() {
@@ -24,50 +24,68 @@ export default function ProductsPage() {
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState("Recommended");
   const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
-  const toggleFilter = (item: string, setFn: React.Dispatch<React.SetStateAction<string[]>>) => {
-    setFn((prev) =>
-      prev.includes(item) ? prev.filter((i) => i !== item) : [...prev, item]
+  const toggleFilter = (
+    value: string,
+    setter: React.Dispatch<React.SetStateAction<string[]>>
+  ) => {
+    setter((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
     );
+    setCurrentPage(1);
+  };
+
+  const clearAllFilters = () => {
+    setSelectedMaterials([]);
+    setSelectedFinishes([]);
+    setSelectedColors([]);
     setCurrentPage(1);
   };
 
   const filteredProducts = useMemo(() => {
     return fullProductCatalog.filter((item) => {
-      if (selectedMaterials.length > 0 && !selectedMaterials.includes(item.material)) {
+      if (selectedMaterials.length && !selectedMaterials.includes(item.material)) {
         return false;
       }
-      if (selectedFinishes.length > 0 && !selectedFinishes.includes(item.finish)) {
+      if (selectedFinishes.length && !selectedFinishes.includes(item.finish)) {
         return false;
       }
-      if (selectedColors.length > 0 && !selectedColors.includes(item.color)) {
+      if (selectedColors.length && !selectedColors.includes(item.color)) {
         return false;
       }
       return true;
     });
   }, [selectedMaterials, selectedFinishes, selectedColors]);
 
-  const ITEMS_PER_PAGE = 6;
-  const totalPages = Math.min(2, Math.max(1, Math.ceil(filteredProducts.length / ITEMS_PER_PAGE)));
+  const sortedProducts = useMemo(() => {
+    const list = [...filteredProducts];
+    if (sortBy === "Newest") return list.reverse();
+    if (sortBy === "Capacity") {
+      return list.sort((a, b) => parseInt(a.specs.capacity) - parseInt(b.specs.capacity));
+    }
+    return list;
+  }, [filteredProducts, sortBy]);
 
+  const totalPages = Math.ceil(sortedProducts.length / itemsPerPage) || 1;
   const paginatedProducts = useMemo(() => {
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return filteredProducts.slice(start, start + ITEMS_PER_PAGE);
-  }, [filteredProducts, currentPage]);
+    const start = (currentPage - 1) * itemsPerPage;
+    return sortedProducts.slice(start, start + itemsPerPage);
+  }, [sortedProducts, currentPage]);
 
-  const handleInquire = (title: string) => {
-    setSelectedProductTitle(title);
+  const handleInquire = (productTitle: string) => {
+    setSelectedProductTitle(productTitle);
     setQuoteOpen(true);
   };
 
-  const convertToProductItem = (item: CatalogProduct): ProductItem => ({
-    id: item.id,
-    title: item.title,
-    category: item.category,
-    description: item.description,
-    image: item.image,
-    badges: item.badges,
-    specs: item.specs,
+  const convertToProductItem = (cat: CatalogProduct): ProductItem => ({
+    id: cat.id,
+    title: cat.title,
+    category: cat.category,
+    description: cat.description,
+    image: cat.image,
+    badges: cat.badges,
+    specs: cat.specs,
   });
 
   return (
@@ -209,7 +227,7 @@ export default function ProductsPage() {
               {/* Right Side Grid */}
               <div className="lg:col-span-9 space-y-6">
                 <div className="flex items-center justify-between text-xs text-neutral-600 pb-4 border-b border-neutral-200">
-                  <span>Showing {paginatedProducts.length} of {filteredProducts.length} products</span>
+                  <span>Showing <strong className="text-neutral-900">{paginatedProducts.length}</strong> of {filteredProducts.length} products</span>
 
                   <div className="flex items-center space-x-2">
                     <span className="uppercase text-[11px] tracking-wider font-semibold text-neutral-800">
@@ -227,9 +245,10 @@ export default function ProductsPage() {
                   </div>
                 </div>
 
+                {/* Modern Luxury Product Cards Grid */}
                 <motion.div
                   layout
-                  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-2"
+                  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-7 pt-2"
                 >
                   <AnimatePresence mode="popLayout">
                     {paginatedProducts.map((item) => (
@@ -240,50 +259,83 @@ export default function ProductsPage() {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.94 }}
                         transition={{ duration: 0.35, ease: "easeOut" }}
-                        whileHover={{ y: -6 }}
-                        className="group bg-white flex flex-col justify-between p-4 border border-neutral-200/80 hover:border-neutral-900 shadow-xs hover:shadow-xl transition-all duration-300 rounded-sm"
+                        whileHover={{ y: -8 }}
+                        className="group bg-white rounded-xl p-4 sm:p-5 border border-neutral-200/80 hover:border-neutral-900 shadow-xs hover:shadow-2xl hover:shadow-black/10 transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
                       >
+                        {/* Top Accent Line on Hover */}
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#C5A059] via-[#121212] to-[#C5A059] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" />
+
                         <div>
-                          <div className="relative aspect-square w-full bg-neutral-100 mb-4 overflow-hidden rounded-xs border border-neutral-100">
+                          {/* Image Container with Glass Badges & Smooth Zoom */}
+                          <div className="relative aspect-square w-full rounded-lg overflow-hidden bg-gradient-to-b from-neutral-50 to-neutral-100/70 mb-4 border border-neutral-100">
                             <Image
                               src={item.image}
                               alt={item.title}
                               fill
-                              className="object-cover group-hover:scale-106 transition-transform duration-500 ease-out"
+                              className="object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                             />
-                            <div className="absolute top-2.5 left-2.5 flex gap-1 flex-wrap z-10">
+
+                            {/* Luxury Glass Badges */}
+                            <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
                               {item.badges.map((b) => (
                                 <span
                                   key={b}
-                                  className="px-2 py-0.5 bg-white/95 text-[9px] uppercase tracking-wider font-semibold text-neutral-800 rounded-xs shadow-2xs border border-neutral-200"
+                                  className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white/95 backdrop-blur-md text-[9px] font-bold uppercase tracking-wider text-neutral-800 rounded-full shadow-xs border border-white/70"
                                 >
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#10785A]" />
                                   {b}
                                 </span>
                               ))}
                             </div>
+
+                            {/* Quick Action Overlay on Hover */}
+                            <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px] z-10">
+                              <button
+                                onClick={() => setDetailProduct(convertToProductItem(item))}
+                                className="px-4 py-2 bg-white text-neutral-900 text-xs font-semibold uppercase tracking-wider rounded-md shadow-xl hover:bg-neutral-100 transition-all flex items-center gap-2 cursor-pointer hover:scale-105"
+                              >
+                                <Eye className="w-4 h-4 text-[#C5A059]" />
+                                <span>Quick Specs</span>
+                              </button>
+                            </div>
                           </div>
 
-                          <h4 className="font-serif font-medium text-sm text-[#121212] mb-1 group-hover:text-[#C5A059] transition-colors leading-snug">
+                          {/* Category Tag & Volume Tag */}
+                          <div className="flex items-center justify-between mb-1.5">
+                            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#967C2F]">
+                              {item.category}
+                            </span>
+                            <span className="text-[10px] font-semibold text-neutral-500 bg-neutral-100 px-2 py-0.5 rounded-full">
+                              {item.specs?.capacity || "150ml"}
+                            </span>
+                          </div>
+
+                          {/* Product Title */}
+                          <h4 className="font-serif font-semibold text-base text-[#121212] group-hover:text-[#967C2F] transition-colors leading-snug mb-1.5 line-clamp-2">
                             {item.title}
                           </h4>
-                          <p className="text-[11px] text-neutral-500 font-sans mb-4">
+
+                          {/* Subtext description */}
+                          <p className="text-xs text-neutral-500 font-sans font-light leading-relaxed mb-4 line-clamp-2">
                             {item.subtext}
                           </p>
                         </div>
 
-                        <div className="pt-3 border-t border-neutral-100 flex items-center justify-between">
+                        {/* Modern Action Footer */}
+                        <div className="pt-3.5 border-t border-neutral-100 flex items-center justify-between gap-2.5">
                           <button
                             onClick={() => handleInquire(item.title)}
-                            className="text-xs font-bold tracking-widest uppercase text-[#967C2F] hover:text-[#121212] transition-colors flex items-center space-x-1 cursor-pointer group/inq"
+                            className="flex-1 py-2.5 px-3.5 bg-[#121212] hover:bg-[#C5A059] text-white text-[11px] font-bold uppercase tracking-wider rounded-md transition-all duration-300 flex items-center justify-center gap-1.5 shadow-xs cursor-pointer group/inq"
                           >
-                            <span>INQUIRE</span>
-                            <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover/inq:translate-x-1 transition-transform" />
+                            <span>Inquire Now</span>
+                            <ArrowRight className="w-3.5 h-3.5 group-hover/inq:translate-x-1 transition-transform" />
                           </button>
                           <button
                             onClick={() => setDetailProduct(convertToProductItem(item))}
-                            className="text-[11px] font-medium text-neutral-400 hover:text-neutral-900 transition-colors cursor-pointer"
+                            className="py-2.5 px-3 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 hover:text-neutral-900 text-[11px] font-semibold uppercase tracking-wider rounded-md transition-all cursor-pointer flex items-center gap-1"
                           >
-                            Details
+                            <Eye className="w-3.5 h-3.5" />
+                            <span>Details</span>
                           </button>
                         </div>
                       </motion.div>
